@@ -5,10 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron .",
-    "package": "electron-packager .",
-    "package-linux": "electron-packager . --platform=linux --arch=x64",
-    "dist": "electron-builder"
+    "start": "electron ."
   },
   "build": {
     "appId": "com.forjed.passpocket",

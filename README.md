@@ -55,6 +55,13 @@ To make the packages for Linux, run:
 npm run dist -- --linux
 ```
 
+### Making installer for Windows
+To make the installer for Windows, run:
+
+```sh
+npm run dist
+```
+
 ## Authors
 - [Xytrux](https://github.com/Xytrux) - Initial work
 - [CallenDV](https://github.com/CallenDV) - Web version

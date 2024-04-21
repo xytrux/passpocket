@@ -1,165 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Passpocket - Password Manager</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    overflow-x: hidden;
-  }
-  #sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 250px;
-    background-color: #333;
-    color: #fff;
-    padding-top: 20px;
-  }
-  #sidebar ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  #sidebar li {
-    margin-bottom: 10px;
-  }
-  #sidebar li a {
-    display: block;
-    padding: 10px 20px;
-    color: #fff;
-    text-decoration: none;
-    transition: background-color 0.3s;
-  }
-  #sidebar li a:hover {
-    background-color: #555;
-  }
-  #content {
-    margin-left: 250px;
-    padding: 20px;
-  }
-  .page {
-    display: none;
-  }
-  .page.active {
-    display: block;
-  }
-  button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 10px;
-  }
-  button:hover {
-    background-color: #45a049;
-  }
-  input[type="text"] {
-    padding: 10px;
-    width: 100%;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  th, td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-</style>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Passpocket - Password Manager</title>
+        <link href="toastr.css" rel="stylesheet" />
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+                overflow-x: hidden;
+            }
+            #sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 250px;
+                background-color: #333;
+                color: #fff;
+                padding-top: 20px;
+            }
+            #sidebar ul {
+                list-style-type: none;
+                padding: 0;
+            }
+            #sidebar li {
+                margin-bottom: 10px;
+            }
+            #sidebar li a {
+                display: block;
+                padding: 10px 20px;
+                color: #fff;
+                text-decoration: none;
+                transition: background-color 0.3s;
+            }
+            #sidebar li a:hover {
+                background-color: #555;
+            }
+            #content {
+                margin-left: 250px;
+                padding: 20px;
+            }
+            .page {
+                display: none;
+            }
+            .page.active {
+                display: block;
+            }
+            button {
+                padding: 10px 20px;
+                background-color: #4caf50;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+                border-radius: 5px;
+                margin-top: 10px;
+            }
+            button:hover {
+                background-color: #45a049;
+            }
+            input[type="text"] {
+                padding: 10px;
+                width: 100%;
+                margin-bottom: 10px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            th,
+            td {
+                padding: 8px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+        </style>
+    </head>
+    <body>
+        <script src="jquery.js"></script>
+        <script src="toastr.js"></script>
+        <div id="sidebar">
+            <ul>
+                <li>
+                    <a href="#" onclick="showPage('password-entry')"
+                        >Password Entry</a
+                    >
+                </li>
+                <li>
+                    <a href="#" onclick="showPage('password-generator')"
+                        >Password Generator</a
+                    >
+                </li>
+                <li>
+                    <a href="#" onclick="showPage('password-display')"
+                        >View Passwords</a
+                    >
+                </li>
+                <li><a href="#" onclick="closePage()">Close</a></li>
+            </ul>
+        </div>
 
-<div id="sidebar">
-  <ul>
-    <li><a href="#" onclick="showPage('password-entry')">Password Entry</a></li>
-    <li><a href="#" onclick="showPage('password-generator')">Password Generator</a></li>
-    <li><a href="#" onclick="showPage('password-display')">View Passwords</a></li>
-    <li><a href="#" onclick="closePage()">Close</a></li>
-  </ul>
-</div>
+        <div id="content">
+            <div id="password-entry" class="page active">
+                <h2>Password Entry</h2>
+                <input
+                    type="text"
+                    id="usernameInput"
+                    placeholder="Enter username"
+                />
+                <input
+                    type="text"
+                    id="passwordInput"
+                    placeholder="Enter password"
+                />
+                <button onclick="storePassword()">Store Password</button>
+            </div>
 
-<div id="content">
-  <div id="password-entry" class="page active">
-    <h2>Password Entry</h2>
-    <input type="text" id="usernameInput" placeholder="Enter username">
-    <input type="text" id="passwordInput" placeholder="Enter password">
-    <button onclick="storePassword()">Store Password</button>
-  </div>
-  
-  <div id="password-generator" class="page">
-    <h2>Password Generator</h2>
-    <input type="text" id="generatedPassword" readonly>
-    <button onclick="generatePassword()">Generate Password</button>
-  </div>
-  
-  <div id="password-display" class="page">
-    <h2>Stored Passwords</h2>
-    <table id="passwordTable">
-      <tr>
-        <th>Username</th>
-        <th>Password</th>
-      </tr>
-    </table>
-  </div>
-</div>
+            <div id="password-generator" class="page">
+                <h2>Password Generator</h2>
+                <input type="text" id="generatedPassword" readonly />
+                <button onclick="generatePassword()">Generate Password</button>
+            </div>
 
-<script>
-  function showPage(pageId) {
-    document.querySelectorAll('.page').forEach(page => {
-      page.classList.remove('active');
-    });
-    document.getElementById(pageId).classList.add('active');
-    if (pageId === 'password-display') {
-      displayPasswords();
-    }
-  }
+            <div id="password-display" class="page">
+                <h2>Stored Passwords</h2>
+                <table id="passwordTable">
+                    <tr>
+                        <th>Username</th>
+                        <th>Password</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
 
-  function storePassword() {
-    const username = document.getElementById('usernameInput').value;
-    const password = document.getElementById('passwordInput').value;
-    let passwords = JSON.parse(localStorage.getItem('passwords')) || [];
-    passwords.push({username, password});
-    localStorage.setItem('passwords', JSON.stringify(passwords));
-    alert('Password stored successfully!');
-    document.getElementById('usernameInput').value = '';
-    document.getElementById('passwordInput').value = '';
-  }
+        <script>
+            toastr.options = {
+                closeButton: false,
+                debug: false,
+                newestOnTop: true,
+                progressBar: true,
+                positionClass: "toast-top-right",
+                preventDuplicates: false,
+                onclick: null,
+                showDuration: "300",
+                hideDuration: "1000",
+                timeOut: "5000",
+                extendedTimeOut: "1000",
+                showEasing: "swing",
+                hideEasing: "linear",
+                showMethod: "fadeIn",
+                hideMethod: "fadeOut",
+            };
+            function showPage(pageId) {
+                document.querySelectorAll(".page").forEach((page) => {
+                    page.classList.remove("active");
+                });
+                document.getElementById(pageId).classList.add("active");
+                if (pageId === "password-display") {
+                    displayPasswords();
+                }
+            }
 
-  function generatePassword() {
-    const length = 12;
-    const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+";
-    let password = "";
-    for (let i = 0; i < length; i++) {
-      password += charset.charAt(Math.floor(Math.random() * charset.length));
-    }
-    document.getElementById('generatedPassword').value = password;
-  }
+            function storePassword() {
+                const username = document.getElementById("usernameInput").value;
+                const password = document.getElementById("passwordInput").value;
+                let passwords =
+                    JSON.parse(localStorage.getItem("passwords")) || [];
+                passwords.push({ username, password });
+                localStorage.setItem("passwords", JSON.stringify(passwords));
+                toastr["success"]("Password stored successfully!");
+                document.getElementById("usernameInput").value = "";
+                document.getElementById("passwordInput").value = "";
+            }
 
-  function displayPasswords() {
-    const passwords = JSON.parse(localStorage.getItem('passwords')) || [];
-    const table = document.getElementById('passwordTable');
-    table.innerHTML = `<tr><th>Username</th><th>Password</th></tr>`;
-    passwords.forEach(entry => {
-      table.innerHTML += `<tr><td>${entry.username}</td><td>${entry.password}</td></tr>`;
-    });
-  }
+            function generatePassword() {
+                const length = 12;
+                const charset =
+                    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+";
+                let password = "";
+                for (let i = 0; i < length; i++) {
+                    password += charset.charAt(
+                        Math.floor(Math.random() * charset.length)
+                    );
+                }
+                document.getElementById("generatedPassword").value = password;
+            }
 
-  function closePage() {
-    window.close();
-  }
-</script>
+            function displayPasswords() {
+                const passwords =
+                    JSON.parse(localStorage.getItem("passwords")) || [];
+                const table = document.getElementById("passwordTable");
+                table.innerHTML = `<tr><th>Username</th><th>Password</th></tr>`;
+                passwords.forEach((entry) => {
+                    table.innerHTML += `<tr><td>${entry.username}</td><td>${entry.password}</td></tr>`;
+                });
+            }
 
-</body>
+            function closePage() {
+                window.close();
+            }
+        </script>
+    </body>
 </html>

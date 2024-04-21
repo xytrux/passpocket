@@ -1,0 +1,42 @@
+{
+  "name": "passpocket",
+  "version": "1.0.0",
+  "description": "A simple password manager",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "package": "electron-packager .",
+    "package-linux": "electron-packager . --platform=linux --arch=x64",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.forjed.passpocket",
+    "productName": "PassPocket",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "rpm"
+      ]
+    }
+  },
+  "keywords": [],
+  "author": "Forjed",
+  "license": "FL4S",
+  "devDependencies": {
+    "@electron/get": "^3.0.0",
+    "debug": "^4.3.4",
+    "electron": "^30.0.1",
+    "electron-builder": "^24.13.3",
+    "electron-packager": "^17.1.2",
+    "electron-winstaller": "^5.3.0"
+  }
+}

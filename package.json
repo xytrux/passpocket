@@ -29,8 +29,9 @@
     }
   },
   "keywords": [],
-  "author": "Forjed",
-  "license": "FL4S",
+  "author": "Xytrux",
+  "email": "helloworldpy103@gmail.com",
+  "license": "MIT",
   "devDependencies": {
     "@electron/get": "^3.0.0",
     "debug": "^4.3.4",

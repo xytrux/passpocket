@@ -29,8 +29,10 @@
     }
   },
   "keywords": [],
-  "author": "Xytrux",
-  "email": "helloworldpy103@gmail.com",
+  "author": {
+    "name": "Xytrux",
+    "email": "helloworldpy103@gmail.com"
+  },
   "license": "MIT",
   "devDependencies": {
     "@electron/get": "^3.0.0",

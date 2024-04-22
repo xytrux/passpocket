@@ -8,6 +8,7 @@
     "start": "electron .",
     "package": "electron-packager .",
     "package-linux": "electron-packager . --platform=linux --arch=x64",
+    "package-mac": "electron-packager . --platform=darwin --arch=x64",
     "dist": "electron-builder"
   },
   "build": {
@@ -26,6 +27,9 @@
         "deb",
         "rpm"
       ]
+    },
+    "mac": {
+      "target": "dmg"
     }
   },
   "keywords": [],

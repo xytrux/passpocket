@@ -4,6 +4,7 @@ function createWindow () {
   let win = new BrowserWindow({
     width: 800,
     height: 600,
+    icon:'icon.png',
     webPreferences: {
       nodeIntegration: true,
     },

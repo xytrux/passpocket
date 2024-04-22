@@ -35,21 +35,33 @@ npm start
 
 ### Building the Application
 
-#### Making DEB and RPM packages
+To build the application for Windows, run:
+
+```sh
+npm run package
+```
+
+To build the application specifically for Linux, run:
+
+```sh
+npm run package-linux
+```
+
+The built application will be located in the same directory.
+
+### Making DEB and RPM packages
 To make the packages for Linux, run:
 
 ```sh
 npm run dist -- --linux
 ```
 
-#### Making installer for Windows
+### Making installer for Windows
 To make the installer for Windows, run:
 
 ```sh
 npm run dist
 ```
-
-The built application will be located in the same directory.
 
 ## Authors
 - [Xytrux](https://github.com/Xytrux) - Initial work

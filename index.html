@@ -209,7 +209,7 @@
                 const table = document.getElementById("passwordTable");
                 table.innerHTML = `<tr><th>Website</th><th>Username</th><th>Password</th><th>Action</th></tr>`;
                 passwords.forEach((entry, index) => {
-                    table.innerHTML += `<tr><td>${entry.website</td><td>${entry.username}</td><td>${entry.password}</td><td><button onclick="deletePassword(${index})">Delete</button></td></tr>`;
+                    table.innerHTML += `<tr><td>${entry.website}</td><td>${entry.username}</td><td>${entry.password}</td><td><button onclick="deletePassword(${index})">Delete</button></td></tr>`;
                 });
             }
 

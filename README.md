@@ -20,7 +20,7 @@ PassPocket is a simple, yet powerful password manager.
 - Dark mode
 
 ## Quick Start
- Download one of the files in the [releases](https://github.com/xytrux/passpocket/releases/tag/v1.0.0) page!
+ Download one of the files in the [releases](https://github.com/xytrux/passpocket/releases) page!
 
 For detailed instructions, see [INSTALL.md](INSTALL.md).
 

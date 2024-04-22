@@ -7,6 +7,7 @@ function createWindow () {
     icon:'icon.png',
     webPreferences: {
       nodeIntegration: true,
+      contextIsolation: false,
     },
     autoHideMenuBar: true,
   })

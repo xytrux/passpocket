@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Passpocket - Password Manager</title>
     <link href="toastr.css" rel="stylesheet" />
-    <link rel="icon" type="image/png" href="icon.png" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -100,6 +100,7 @@
 <body>
     <script src="jquery.js"></script>
     <script src="toastr.js"></script>
+    <script src="darkreader.js"></script>
     <div id="sidebar">
         <ul>
             <li>
@@ -141,6 +142,13 @@
         </div>
 
         <script>
+            // const darkReader = require("darkreader");
+            DarkReader.auto({
+                brightness: 100,
+                contrast: 90,
+                sepia: 10,
+            });
+
             toastr.options = {
                 closeButton: false,
                 debug: false,

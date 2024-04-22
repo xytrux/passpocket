@@ -17,24 +17,33 @@
       "output": "dist"
     },
     "win": {
-      "target": "nsis",
-      "arch": [
-        "x64",
-        "ia32",
-        "arm64",
-        "armv7l"
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32",
+            "arm64",
+            "armv7l"
+          ]
+        }
       ]
     },
     "linux": {
       "target": [
-        "deb",
-        "rpm"
-      ],
-      "arch": [
-        "x64",
-        "ia32",
-        "arm64",
-        "armv7l"
+        {
+          "target": [
+            "AppImage",
+            "deb",
+            "rpm"
+          ],
+          "arch": [
+            "x64",
+            "ia32",
+            "arm64",
+            "armv7l"
+          ]
+        }
       ]
     }
   },

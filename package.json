@@ -74,7 +74,7 @@
     "debug": "^4.3.4",
     "electron": "^30.0.1",
     "electron-builder": "^24.13.3",
-    "electron-packager": "^17.1.2",
-    "electron-winstaller": "^5.3.0"
+    "electron-winstaller": "^5.3.0",
+    "@electron/packager": "^18.3.2"
   }
 }

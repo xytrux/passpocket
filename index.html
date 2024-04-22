@@ -121,6 +121,7 @@
             <h2>Password Entry</h2>
             <input type="text" id="usernameInput" placeholder="Enter username" />
             <input type="text" id="passwordInput" placeholder="Enter password" />
+            <input type="text" id="websiteInput" placeholder="Enter website" />
             <button onclick="storePassword()">Store Password</button>
         </div>
 
@@ -134,6 +135,7 @@
             <h2>Stored Passwords</h2>
             <table id="passwordTable">
                 <tr>
+                    <th>Website</th>
                     <th>Username</th>
                     <th>Password</th>
                     <th>Action</th>
@@ -179,13 +181,14 @@
             function storePassword() {
                 const username = document.getElementById("usernameInput").value;
                 const password = document.getElementById("passwordInput").value;
+                const website = document.getElementById("websiteInput").value;
                 let passwords =
                     JSON.parse(localStorage.getItem("passwords")) || [];
-                passwords.push({ username, password });
+                passwords.push({ username, password, website });
                 localStorage.setItem("passwords", JSON.stringify(passwords));
                 toastr["success"]("Password stored successfully!");
-                document.getElementById("usernameInput").value = "";
-                document.getElementById("passwordInput").value = "";
+                username.value = "";
+                password.value = "";
             }
 
             function generatePassword() {
@@ -204,9 +207,9 @@
             function displayPasswords() {
                 const passwords = JSON.parse(localStorage.getItem("passwords")) || [];
                 const table = document.getElementById("passwordTable");
-                table.innerHTML = `<tr><th>Username</th><th>Password</th><th>Action</th></tr>`;
+                table.innerHTML = `<tr><th>Website</th><th>Username</th><th>Password</th><th>Action</th></tr>`;
                 passwords.forEach((entry, index) => {
-                    table.innerHTML += `<tr><td>${entry.username}</td><td>${entry.password}</td><td><button onclick="deletePassword(${index})">Delete</button></td></tr>`;
+                    table.innerHTML += `<tr><td>${entry.website</td><td>${entry.username}</td><td>${entry.password}</td><td><button onclick="deletePassword(${index})">Delete</button></td></tr>`;
                 });
             }
 

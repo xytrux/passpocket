@@ -6,7 +6,7 @@
 <p dir="auto"><a href="https://github.com/xytrux/passpocket/tree/main"><img src="https://img.shields.io/badge/status-active-success/xytrux/passpocket"></a>
 <a href="https://github.com/xytrux/passpocket/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/xytrux/passpocket"></a>
 <a href="https://github.com/xytrux/passpocket/pulls"><img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/xytrux/passpocket"></a>
-<a href="https://github.com/xytrux/passpocket/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/xytrux/passpocket"></a></p>
+<a href="https://github.com/xytrux/passpocket/blob/main/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/xytrux/passpocket"></a></p>
 </div>
 
 # PassPocket

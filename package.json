@@ -1,6 +1,6 @@
 {
   "name": "passpocket",
-  "version": "1.0.0",
+  "version": "0.1.0-alpha",
   "description": "A simple password manager",
   "main": "index.js",
   "scripts": {

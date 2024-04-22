@@ -18,6 +18,7 @@ PassPocket is a simple, yet powerful password manager.
 - Secure password storage
 - Easy-to-use interface
 - Dark mode
+- No online account system needed
 
 ## Quick Start
  Download one of the files in the [releases](https://github.com/xytrux/passpocket/releases) page!
@@ -28,7 +29,8 @@ For detailed instructions, see [INSTALL.md](INSTALL.md).
 
 - [Xytrux](https://github.com/Xytrux) - Initial work
 - [CallenDV](https://github.com/CallenDV) - Web version
-- [ClaytonTDM](https://github.com/ClaytonTDM) - Notifications and bug fixes
+- [ClaytonTDM](https://github.com/ClaytonTDM) - Initial work
+- [wecannotdecide](https://github.com/wecannotdecide) - MacOS Testing/building
 
 ## License
 

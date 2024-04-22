@@ -31,17 +31,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Delete non-essential files
+        run: |
+          find . ! \( -name '*.html' -o -name '*.css' -o -name '*.js' -o -name '*.map' \) -type f -delete
       - name: Setup Pages
         uses: actions/configure-pages@v4
-      - name: Filter files
-        run: |
-          find . -type f \( -name "*.css" -o -name "*.html" -o -name "*.js" -o -name "*.map" \) > files.txt
-        shell: bash
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
-          # Upload only the files listed in files.txt
-          path: files.txt
+          # Upload entire repository
+          path: '.'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

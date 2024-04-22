@@ -59,5 +59,5 @@ npm run dist -- --linux
 To make the installer for Windows, run:
 
 ```sh
-npm run dist
+npm run dist -- --windows
 ```

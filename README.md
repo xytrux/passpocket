@@ -36,7 +36,11 @@ This project is licensed under the MIT License.
 
 ## Contact
 
-For any inquiries, you can reach out to helloworldpy103@gmail.com.
+For any inquiries, you can reach out to any of these contacts:
+- Email: [`helloworldpy103@gmail.com`](mailto:helloworldpy103@gmail.com)
+- Email: [`claytontdm@gmail.com`](mailto:claytontdm@gmail.com)
+- Matrix/Beeper: `@claytontdm:beeper.com` **(Recommended)**
+- Matrix/Beeper: `@saiplayz1138:beeper.com`
 
 ## Acknowledgments
 

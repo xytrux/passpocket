@@ -1,78 +1,43 @@
+<p align="center">
+  <img src="icon.png" alt="PassPocket Logo" width="200">
+</p>
+
+<div align="center" dir="auto">
+<p dir="auto"><a href="https://github.com/xytrux/passpocket/tree/main"><img src="https://img.shields.io/badge/status-active-success/xytrux/passpocket"></a>
+<a href="https://github.com/xytrux/passpocket/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/xytrux/passpocket"></a>
+<a href="https://github.com/xytrux/passpocket/pulls"><img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/xytrux/passpocket"></a>
+<a href="https://github.com/xytrux/passpocket/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/xytrux/passpocket"></a></p>
+</div>
+
 # PassPocket
 
-PassPocket is a simple password manager.
+PassPocket is a simple, yet powerful password manager.
 
-## Getting Started
+## Features
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+- Secure password storage
+- Easy-to-use interface
+- Dark mode
 
-### Prerequisites
+## Quick Start
+ Download one of the files in the [releases](https://github.com/xytrux/passpocket/releases/tag/v1.0.0) page!
 
-- Node.js (v14 or higher)
-- npm (comes with Node.js)
-
-### Installing
-
-Clone the repository to your local machine:
-
-```sh
-git clone https://github.com/Xytrux/passpocket.git
-cd passpocket
-```
-
-Install the project dependencies:
-
-```sh
-npm install
-```
-
-### Running the Application
-To start the application, run:
-
-```sh
-npm start
-```
-
-### Building the Application
-
-To build the application for Windows, run:
-
-```sh
-npm run package
-```
-
-To build the application specifically for Linux, run:
-
-```sh
-npm run package-linux
-```
-
-The built application will be located in the same directory.
-
-### Making DEB and RPM packages
-To make the packages for Linux, run:
-
-```sh
-npm run dist -- --linux
-```
-
-### Making installer for Windows
-To make the installer for Windows, run:
-
-```sh
-npm run dist
-```
+For detailed instructions, see [INSTALL.md](INSTALL.md).
 
 ## Authors
+
 - [Xytrux](https://github.com/Xytrux) - Initial work
 - [CallenDV](https://github.com/CallenDV) - Web version
 - [ClaytonTDM](https://github.com/ClaytonTDM) - Notifications and bug fixes
 
-### License
+## License
+
 This project is licensed under the MIT License.
 
-### Contact
+## Contact
+
 For any inquiries, you can reach out to helloworldpy103@gmail.com.
 
-### Acknowledgments
-- Thanks to Electron and the open-source community for making this project possible.
+## Acknowledgments
+
+Thanks to Electron and the open-source community for making this project possible.

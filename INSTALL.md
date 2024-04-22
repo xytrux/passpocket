@@ -24,7 +24,7 @@ npm install
 
 ## Running the Application
 
-To build the application for Windows, run:
+To run the application on any OS, run:
 
 ```sh
 npm start
@@ -35,13 +35,19 @@ npm start
 To build the application for Windows, run:
 
 ```sh
-npm run package
+npm run package-win
 ```
 
 To build the application specifically for Linux, run:
 
 ```sh
 npm run package-linux
+```
+
+To build the application specifically for MacOS, run:
+
+```sh
+npm run package-mac
 ```
 
 The built application will be located in the same directory.
@@ -60,4 +66,12 @@ To make the installer for Windows, run:
 
 ```sh
 npm run dist -- --windows
+```
+
+## Building MacOS packages (DMG)
+
+To make the packages for MacOS, run:
+
+```sh
+npm run dist -- --mac
 ```

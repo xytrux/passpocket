@@ -5,10 +5,6 @@ function createWindow () {
     width: 800,
     height: 600,
     icon: 'icon.png',
-    webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: false,
-    },
     autoHideMenuBar: true,
   })
 

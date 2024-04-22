@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Passpocket - Password Manager</title>
-    <link href="toastr.css" rel="stylesheet" />
+    <link href="toastify.css" rel="stylesheet" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <style>
         body {
@@ -98,8 +98,7 @@
 </head>
 
 <body>
-    <script src="jquery.js"></script>
-    <script src="toastr.js"></script>
+    <script src="toastify.js"></script>
     <script src="darkreader.js"></script>
     <div id="sidebar">
         <ul>
@@ -151,23 +150,6 @@
                 sepia: 10,
             });
 
-            toastr.options = {
-                closeButton: false,
-                debug: false,
-                newestOnTop: true,
-                progressBar: true,
-                positionClass: "toast-top-right",
-                preventDuplicates: false,
-                onclick: null,
-                showDuration: "300",
-                hideDuration: "1000",
-                timeOut: "5000",
-                extendedTimeOut: "1000",
-                showEasing: "swing",
-                hideEasing: "linear",
-                showMethod: "fadeIn",
-                hideMethod: "fadeOut",
-            };
             function showPage(pageId) {
                 document.querySelectorAll(".page").forEach((page) => {
                     page.classList.remove("active");
@@ -186,7 +168,7 @@
                     JSON.parse(localStorage.getItem("passwords")) || [];
                 passwords.push({ username, password, website });
                 localStorage.setItem("passwords", JSON.stringify(passwords));
-                toastr["success"]("Password stored successfully!");
+                alert("Password stored successfully!", "success");
                 username.value = "";
                 password.value = "";
             }
@@ -217,12 +199,28 @@
                 let passwords = JSON.parse(localStorage.getItem("passwords")) || [];
                 passwords.splice(index, 1);
                 localStorage.setItem("passwords", JSON.stringify(passwords));
-                toastr["success"]("Password deleted successfully!");
+                alert("Password deleted successfully!", "success");
                 displayPasswords();
             }
 
             function closePage() {
                 window.close();
+            }
+
+            function alert(text, icon) {
+                Toastify({
+                    text: text,
+                    avatar: icon + '.png',
+                    duration: 3000,
+                    close: false,
+                    gravity: "top", // `top` or `bottom`
+                    position: "right", // `left`, `center` or `right`
+                    stopOnFocus: true, // Prevents dismissing of toast on hover
+                    style: {
+                        background: "#313333",
+                    },
+                    onClick: function () { } // Callback after click
+                }).showToast();
             }
         </script>
 </body>

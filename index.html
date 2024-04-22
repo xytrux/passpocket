@@ -184,8 +184,8 @@
                 passwords.push({ username, password });
                 localStorage.setItem("passwords", JSON.stringify(passwords));
                 toastr["success"]("Password stored successfully!");
-                document.getElementById("usernameInput").value = "";
-                document.getElementById("passwordInput").value = "";
+                username.value = "";
+                password.value = "";
             }
 
             function generatePassword() {

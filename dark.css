@@ -1,0 +1,135 @@
+/*
+                        _______
+                       /       \
+                      .==.    .==.
+                     ((  ))==((  ))
+                    / "=="    "=="\
+                   /____|| || ||___\
+       ________     ____    ________  ___    ___
+       |  ___  \   /    \   |  ___  \ |  |  /  /
+       |  |  \  \ /  /\  \  |  |  \  \|  |_/  /
+       |  |   )  /  /__\  \ |  |__/  /|  ___  \
+       |  |__/  /  ______  \|  ____  \|  |  \  \
+_______|_______/__/ ____ \__\__|___\__\__|___\__\____
+|  ___  \ |  ____/ /    \   |  ___  \ |  ____|  ___  \
+|  |  \  \|  |___ /  /\  \  |  |  \  \|  |___|  |  \  \
+|  |__/  /|  ____/  /__\  \ |  |   )  |  ____|  |__/  /
+|  ____  \|  |__/  ______  \|  |__/  /|  |___|  ____  \
+|__|   \__\____/__/      \__\_______/ |______|__|   \__\
+                https://darkreader.org
+*/
+
+/*! Dark reader generated CSS | Licensed under MIT https://github.com/darkreader/darkreader/blob/main/LICENSE */
+
+/* User-Agent Style */
+html {
+    background-color: #181a1b !important;
+}
+html {
+    color-scheme: dark !important;
+}
+iframe {
+    color-scheme: initial;
+}
+html, body {
+    background-color: #181a1b;
+}
+html, body {
+    border-color: #736b5e;
+    color: #e8e6e3;
+}
+a {
+    color: #3391ff;
+}
+table {
+    border-color: #545b5e;
+}
+::placeholder {
+    color: #b2aba1;
+}
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    background-color: #404400 !important;
+    color: #e8e6e3 !important;
+}
+::-webkit-scrollbar {
+    background-color: #202324;
+    color: #aba499;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #454a4d;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #575e62;
+}
+::-webkit-scrollbar-thumb:active {
+    background-color: #484e51;
+}
+::-webkit-scrollbar-corner {
+    background-color: #181a1b;
+}
+::selection {
+    background-color: #004daa !important;
+    color: #e8e6e3 !important;
+}
+::-moz-selection {
+    background-color: #004daa !important;
+    color: #e8e6e3 !important;
+}
+
+/* Variables Style */
+:root {
+   --darkreader-neutral-background: #131516;
+   --darkreader-neutral-text: #d8d4cf;
+   --darkreader-selection-background: #004daa;
+   --darkreader-selection-text: #e8e6e3;
+}
+
+/* Modified CSS */
+.toastify {
+    background-color: initial;
+    background-image: linear-gradient(135deg, rgb(0, 48, 135), rgb(9, 40, 151));
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 3px 6px -1px, rgba(20, 36, 152, 0.3) 0px 10px 36px -4px;
+    color: rgb(232, 230, 227);
+    text-decoration-color: initial;
+}
+.toast-close {
+    background-color: initial;
+    background-image: initial;
+    border-color: initial;
+    border-style: initial;
+    border-width: 0px;
+    color: rgb(232, 230, 227);
+}
+body {
+    background-color: rgb(30, 33, 34);
+}
+#sidebar {
+    background-color: rgb(38, 42, 43);
+    color: rgb(232, 230, 227);
+}
+#sidebar li a {
+    color: rgb(232, 230, 227);
+    text-decoration-color: initial;
+}
+#sidebar li a:hover {
+    background-color: rgb(64, 69, 72);
+}
+button {
+    background-color: rgb(19, 111, 169);
+    border-color: initial;
+    border-style: none;
+    border-width: initial;
+    color: rgb(232, 230, 227);
+}
+button:hover {
+    background-color: rgb(13, 107, 154);
+}
+input[type="text"] {
+    border-color: rgb(67, 72, 75);
+}
+th,
+td {
+    border-bottom-color: rgb(49, 68, 86);
+}

@@ -1,228 +1,362 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Passpocket - Password Manager</title>
+        <link href="toastify.css" rel="stylesheet" />
+        <link rel="icon" type="image/x-icon" href="favicon.ico" />
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+                overflow-x: hidden;
+            }
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Passpocket - Password Manager</title>
-    <link href="toastify.css" rel="stylesheet" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            overflow-x: hidden;
-        }
+            #sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 250px;
+                background-color: #333;
+                color: #fff;
+                padding-top: 20px;
+            }
 
-        #sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 250px;
-            background-color: #333;
-            color: #fff;
-            padding-top: 20px;
-        }
+            #sidebar ul {
+                list-style-type: none;
+                padding: 0;
+            }
 
-        #sidebar ul {
-            list-style-type: none;
-            padding: 0;
-        }
+            #sidebar li {
+                margin-bottom: 10px;
+            }
 
-        #sidebar li {
-            margin-bottom: 10px;
-        }
+            #sidebar li a {
+                display: block;
+                padding: 10px 20px;
+                color: #fff;
+                text-decoration: none;
+                transition: background-color 0.3s;
+            }
 
-        #sidebar li a {
-            display: block;
-            padding: 10px 20px;
-            color: #fff;
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
+            #sidebar li a:hover {
+                background-color: #555;
+            }
 
-        #sidebar li a:hover {
-            background-color: #555;
-        }
+            #content {
+                margin-left: 250px;
+                padding: 20px;
+            }
 
-        #content {
-            margin-left: 250px;
-            padding: 20px;
-        }
+            .page {
+                display: none;
+            }
 
-        .page {
-            display: none;
-        }
+            .page.active {
+                display: block;
+            }
 
-        .page.active {
-            display: block;
-        }
+            .page.fade-out {
+                animation: fadeOut 0.5s;
+            }
 
-        button {
-            padding: 10px 20px;
-            background-color: #32a2e8;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
+            button {
+                padding: 10px 20px;
+                background-color: #32a2e8;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+                border-radius: 5px;
+                margin-top: 10px;
+            }
 
-        button:hover {
-            background-color: #4dbaf0;
-        }
+            button:hover {
+                background-color: #4dbaf0;
+            }
 
-        input[type="text"] {
-            padding: 10px;
-            width: 100%;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            border: 1px solid #adc6cc;
-        }
+            input[type="text"] {
+                padding: 10px;
+                width: calc(100% - 20px);
+                margin-bottom: 10px;
+                border-radius: 5px;
+                border: 1px solid #adc6cc;
+            }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+            select {
+                padding: 10px;
+                margin-bottom: 10px;
+                border-radius: 5px;
+                border: 1px solid #adc6cc;
+            }
 
-        th,
-        td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #bacad8;
-        }
-    </style>
-</head>
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
 
-<body>
-    <script src="toastify.js"></script>
-    <script src="darkreader.js"></script>
-    <div id="sidebar">
-        <ul>
-            <li>
-                <a href="#" onclick="showPage('password-entry')">Password Entry</a>
-            </li>
-            <li>
-                <a href="#" onclick="showPage('password-generator')">Password Generator</a>
-            </li>
-            <li>
-                <a href="#" onclick="showPage('password-display')">View Passwords</a>
-            </li>
-            <li><a href="#" onclick="closePage()">Close</a></li>
-        </ul>
-    </div>
+            th,
+            td {
+                padding: 8px;
+                text-align: left;
+                border-bottom: 1px solid #bacad8;
+            }
+            hr {
+    visibility: hidden;
+}
+        </style>
+        <link href="dark.css" rel="stylesheet" id="dark" disabled />
+        <link
+            href="dark-catppuccin.css"
+            rel="stylesheet"
+            id="darkCatppuccin"
+            disabled
+        />
+    </head>
 
-    <div id="content">
-        <div id="password-entry" class="page active">
-            <h2>Password Entry</h2>
-            <input type="text" id="usernameInput" placeholder="Enter username" />
-            <input type="text" id="passwordInput" placeholder="Enter password" />
-            <input type="text" id="websiteInput" placeholder="Enter website" />
-            <button onclick="storePassword()">Store Password</button>
+    <body>
+        <script src="toastify.js"></script>
+        <!-- <script src="darkreader.js"></script> -->
+        <div id="sidebar">
+            <ul>
+                <li>
+                    <a href="#" onclick="showPage('password-entry')"
+                        >Password Entry</a
+                    >
+                </li>
+                <li>
+                    <a href="#" onclick="showPage('password-generator')"
+                        >Password Generator</a
+                    >
+                </li>
+                <li>
+                    <a href="#" onclick="showPage('password-display')"
+                        >View Passwords</a
+                    >
+                </li>
+                <hr>
+                <li>
+                    <a href="#" onclick="showPage('options')">Options</a>
+                </li>
+                <li><a href="#" onclick="closePage()">Close</a></li>
+            </ul>
         </div>
 
-        <div id="password-generator" class="page">
-            <h2>Password Generator</h2>
-            <input type="text" id="generatedPassword" readonly />
-            <button onclick="generatePassword()">Generate Password</button>
-        </div>
+        <div id="content">
+            <div id="password-entry" class="page">
+                <h2>Password Entry</h2>
+                <input
+                    type="text"
+                    id="usernameInput"
+                    placeholder="Enter username"
+                />
+                <input
+                    type="text"
+                    id="passwordInput"
+                    placeholder="Enter password"
+                />
+                <input
+                    type="text"
+                    id="websiteInput"
+                    placeholder="Enter website"
+                />
+                <button onclick="storePassword()">Store Password</button>
+            </div>
 
-        <div id="password-display" class="page">
-            <h2>Stored Passwords</h2>
-            <table id="passwordTable">
-                <tr>
-                    <th>Website</th>
-                    <th>Username</th>
-                    <th>Password</th>
-                    <th>Action</th>
-                </tr>
-            </table>
-        </div>
+            <div id="options" class="page active">
+                <h2>Options</h2>
+                <label for="theme">Theme</label>
+                <select name="theme" id="theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="dark-catppuccin">Dark (Catppuccin)</option>
+                </select>
+                <br /><br />
+                <label for="encryptionType">Encryption Type</label>
+                <select name="encryptionType" id="encryptionType">
+                    <optgroup label="Web + App">
+                        <option value="AES-GCM">AES-GCM</option>
+                        <option value="AES-CBC">AES-CBC</option>
+                        <option value="AES-ECB">AES-CTR</option>
+                    </optgroup>
+                    <optgroup label="App Only">
+                        <option
+                            value="Serpent-Twofish-AES"
+                            id="s-t-aes"
+                            disabled
+                        >
+                            Serpent-Twofish-AES <strong>(Recommended)</strong>
+                        </option>
+                    </optgroup>
+                </select>
+            </div>
 
-        <script>
-            // const darkReader = require("darkreader");
-            DarkReader.auto({
-                brightness: 100,
-                contrast: 90,
-                sepia: 10,
-            });
+            <div id="password-generator" class="page">
+                <h2>Password Generator</h2>
+                <input type="text" id="generatedPassword" readonly />
+                <button onclick="generatePassword()">Generate Password</button>
+            </div>
 
-            function showPage(pageId) {
-                document.querySelectorAll(".page").forEach((page) => {
-                    page.classList.remove("active");
+            <div id="password-display" class="page">
+                <h2>Stored Passwords</h2>
+                <table id="passwordTable">
+                    <tr>
+                        <th>Website</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Action</th>
+                    </tr>
+                </table>
+            </div>
+
+            <script>
+                let userAgent = navigator.userAgent.toLowerCase();
+                if (userAgent.indexOf(" electron/") > -1) {
+                    document.getElementById("s-t-aes").disabled = false;
+                } else {
+                    document.getElementById("s-t-aes").disabled = false;
+                }
+
+                // const darkReader = require("darkreader");
+                /*
+                DarkReader.auto({
+                    brightness: 100,
+                    contrast: 90,
+                    sepia: 10,
                 });
-                document.getElementById(pageId).classList.add("active");
-                if (pageId === "password-display") {
+                */
+
+                // theme selection code
+                const themeSelection = document.getElementById("theme");
+                const storedTheme = localStorage.getItem("theme");
+                if (storedTheme) {
+                    themeSelection.value = storedTheme;
+                    if (storedTheme === "dark") {
+                        document.getElementById("dark").disabled = false;
+                        document.getElementById(
+                            "darkCatppuccin"
+                        ).disabled = true;
+                    } else if (storedTheme === "dark-catppuccin") {
+                        document.getElementById("dark").disabled = true;
+                        document.getElementById(
+                            "darkCatppuccin"
+                        ).disabled = false;
+                    } else {
+                        document.getElementById("dark").disabled = true;
+                        document.getElementById(
+                            "darkCatppuccin"
+                        ).disabled = true;
+                    }
+                }
+                themeSelection.addEventListener("change", (event) => {
+                    const theme = event.target.value;
+                    if (theme === "dark") {
+                        document.getElementById("dark").disabled = false;
+                        document.getElementById(
+                            "darkCatppuccin"
+                        ).disabled = true;
+                    } else if (theme === "dark-catppuccin") {
+                        document.getElementById("dark").disabled = true;
+                        document.getElementById(
+                            "darkCatppuccin"
+                        ).disabled = false;
+                    } else {
+                        document.getElementById("dark").disabled = true;
+                        document.getElementById(
+                            "darkCatppuccin"
+                        ).disabled = true;
+                    }
+                    localStorage.setItem("theme", theme);
+                });
+
+                function showPage(pageId) {
+                    document.querySelectorAll(".page").forEach((page) => {
+                        page.classList.remove("active");
+                    });
+                    document.getElementById(pageId).classList.add("active");
+                    if (pageId === "password-display") {
+                        displayPasswords();
+                    }
+                }
+
+                function storePassword() {
+                    const username =
+                        document.getElementById("usernameInput").value;
+                    const password =
+                        document.getElementById("passwordInput").value;
+                    const website =
+                        document.getElementById("websiteInput").value;
+                    let passwords =
+                        JSON.parse(localStorage.getItem("passwords")) || [];
+                    passwords.push({ username, password, website });
+                    localStorage.setItem(
+                        "passwords",
+                        JSON.stringify(passwords)
+                    );
+                    alert("Password stored successfully!", "success");
+                    username.value = "";
+                    password.value = "";
+                }
+
+                function generatePassword() {
+                    const length = 12;
+                    const charset =
+                        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[]\\{}|:\";'<>?,./~`";
+                    let password = "";
+                    for (let i = 0; i < length; i++) {
+                        password += charset.charAt(
+                            Math.floor(Math.random() * charset.length)
+                        );
+                    }
+                    document.getElementById("generatedPassword").value =
+                        password;
+                }
+
+                function displayPasswords() {
+                    const passwords =
+                        JSON.parse(localStorage.getItem("passwords")) || [];
+                    const table = document.getElementById("passwordTable");
+                    table.innerHTML = `<tr><th>Website</th><th>Username</th><th>Password</th><th>Action</th></tr>`;
+                    passwords.forEach((entry, index) => {
+                        table.innerHTML += `<tr><td>${entry.website}</td><td>${entry.username}</td><td>${entry.password}</td><td><button onclick="deletePassword(${index})">Delete</button></td></tr>`;
+                    });
+                }
+
+                function deletePassword(index) {
+                    let passwords =
+                        JSON.parse(localStorage.getItem("passwords")) || [];
+                    passwords.splice(index, 1);
+                    localStorage.setItem(
+                        "passwords",
+                        JSON.stringify(passwords)
+                    );
+                    alert("Password deleted successfully!", "success");
                     displayPasswords();
                 }
-            }
 
-            function storePassword() {
-                const username = document.getElementById("usernameInput").value;
-                const password = document.getElementById("passwordInput").value;
-                const website = document.getElementById("websiteInput").value;
-                let passwords =
-                    JSON.parse(localStorage.getItem("passwords")) || [];
-                passwords.push({ username, password, website });
-                localStorage.setItem("passwords", JSON.stringify(passwords));
-                alert("Password stored successfully!", "success");
-                username.value = "";
-                password.value = "";
-            }
-
-            function generatePassword() {
-                const length = 12;
-                const charset =
-                    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[]\\{}|:\";'<>?,./~`";
-                let password = "";
-                for (let i = 0; i < length; i++) {
-                    password += charset.charAt(
-                        Math.floor(Math.random() * charset.length)
-                    );
+                function closePage() {
+                    window.close();
                 }
-                document.getElementById("generatedPassword").value = password;
-            }
 
-            function displayPasswords() {
-                const passwords = JSON.parse(localStorage.getItem("passwords")) || [];
-                const table = document.getElementById("passwordTable");
-                table.innerHTML = `<tr><th>Website</th><th>Username</th><th>Password</th><th>Action</th></tr>`;
-                passwords.forEach((entry, index) => {
-                    table.innerHTML += `<tr><td>${entry.website}</td><td>${entry.username}</td><td>${entry.password}</td><td><button onclick="deletePassword(${index})">Delete</button></td></tr>`;
-                });
-            }
-
-            function deletePassword(index) {
-                let passwords = JSON.parse(localStorage.getItem("passwords")) || [];
-                passwords.splice(index, 1);
-                localStorage.setItem("passwords", JSON.stringify(passwords));
-                alert("Password deleted successfully!", "success");
-                displayPasswords();
-            }
-
-            function closePage() {
-                window.close();
-            }
-
-            function alert(text, icon) {
-                Toastify({
-                    text: text,
-                    avatar: icon + '.png',
-                    duration: 1000,
-                    close: false,
-                    gravity: "top", // `top` or `bottom`
-                    position: "right", // `left`, `center` or `right`
-                    stopOnFocus: true, // Prevents dismissing of toast on hover
-                    style: {
-                        background: "#313333",
-                    },
-                    onClick: function () { } // Callback after click
-                }).showToast();
-            }
-        </script>
-</body>
-
+                function alert(text, icon) {
+                    Toastify({
+                        text: text,
+                        avatar: icon + ".png",
+                        duration: 1000,
+                        close: false,
+                        gravity: "top", // `top` or `bottom`
+                        position: "right", // `left`, `center` or `right`
+                        stopOnFocus: true, // Prevents dismissing of toast on hover
+                        style: {
+                            background: "#313333",
+                        },
+                        onClick: function () {}, // Callback after click
+                    }).showToast();
+                }
+            </script>
+        </div>
+    </body>
 </html>

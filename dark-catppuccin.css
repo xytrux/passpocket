@@ -1,0 +1,244 @@
+/*
+                        _______
+                       /       \
+                      .==.    .==.
+                     ((  ))==((  ))
+                    / "=="    "=="\
+                   /____|| || ||___\
+       ________     ____    ________  ___    ___
+       |  ___  \   /    \   |  ___  \ |  |  /  /
+       |  |  \  \ /  /\  \  |  |  \  \|  |_/  /
+       |  |   )  /  /__\  \ |  |__/  /|  ___  \
+       |  |__/  /  ______  \|  ____  \|  |  \  \
+_______|_______/__/ ____ \__\__|___\__\__|___\__\____
+|  ___  \ |  ____/ /    \   |  ___  \ |  ____|  ___  \
+|  |  \  \|  |___ /  /\  \  |  |  \  \|  |___|  |  \  \
+|  |__/  /|  ____/  /__\  \ |  |   )  |  ____|  |__/  /
+|  ____  \|  |__/  ______  \|  |__/  /|  |___|  ____  \
+|__|   \__\____/__/      \__\_______/ |______|__|   \__\
+                https://darkreader.org
+*/
+
+/*! Dark reader generated CSS | Licensed under MIT https://github.com/darkreader/darkreader/blob/main/LICENSE */
+
+/* User-Agent Style */
+html {
+    background-color: #393d59 !important;
+}
+html {
+    color-scheme: dark !important;
+}
+iframe {
+    color-scheme: initial;
+}
+html, body {
+    background-color: #393d59;
+}
+html, body {
+    border-color: #3560ff;
+    color: #ffffff;
+}
+a {
+    color: #4fd6ff;
+}
+table {
+    border-color: #6770a4;
+}
+::placeholder {
+    color: #a1c5ff;
+}
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    background-color: #828a05 !important;
+    color: #ffffff !important;
+}
+::-webkit-scrollbar {
+    background-color: #404463;
+    color: #91b6ff;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #5e6695;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #6e77ae;
+}
+::-webkit-scrollbar-thumb:active {
+    background-color: #5a618e;
+}
+::-webkit-scrollbar-corner {
+    background-color: #393d59;
+}
+::selection {
+    background-color: #5b6078 !important;
+    color: #FFF !important;
+}
+::-moz-selection {
+    background-color: #5b6078 !important;
+    color: #FFF !important;
+}
+
+/* Invert Style */
+.jfk-bubble.gtx-bubble, .captcheck_answer_label > input + img, span#closed_text > img[src^="https://www.gstatic.com/images/branding/googlelogo"], span[data-href^="https://www.hcaptcha.com/"] > #icon, ::-webkit-calendar-picker-indicator, img.Wirisformula {
+    filter: invert(100%) hue-rotate(180deg) brightness(150%) contrast(86%) !important;
+}
+
+/* Variables Style */
+:root {
+   --darkreader-neutral-background: #2f3247;
+   --darkreader-neutral-text: #f6ffff;
+   --darkreader-selection-background: #5b6078;
+   --darkreader-selection-text: #FFF;
+}
+
+/* Modified CSS */
+.toastify {
+    background-color: initial;
+    background-image: linear-gradient(135deg, rgb(5, 84, 227), rgb(20, 67, 240));
+    box-shadow: rgba(5, 5, 5, 0.12) 0px 3px 6px -1px, rgba(35, 60, 235, 0.3) 0px 10px 36px -4px;
+    color: rgb(255, 255, 255);
+    text-decoration-color: initial;
+}
+.toast-close {
+    background-color: initial;
+    background-image: initial;
+    border-color: initial;
+    border-style: initial;
+    border-width: 0px;
+    color: rgb(255, 255, 255);
+}
+body {
+    background-color: rgb(63, 67, 97);
+}
+#sidebar {
+    background-color: rgb(50, 54, 77);
+    color: rgb(255, 255, 255);
+}
+#sidebar li a {
+    color: rgb(255, 255, 255);
+    text-decoration-color: initial;
+}
+#sidebar li a:hover {
+    background-color: rgb(80, 86, 126);
+}
+button {
+    background-color: rgb(32, 169, 254);
+    border-color: initial;
+    border-style: none;
+    border-width: initial;
+    color: rgb(255, 255, 255);
+}
+button:hover {
+    background-color: rgb(25, 169, 240);
+}
+input[type="text"] {
+    border-color: rgb(83, 90, 132);
+    background-color: rgb(83, 90, 132);
+}
+select {
+    border-color: rgb(83, 90, 132);
+    background-color: rgb(83, 90, 132);
+}
+th,
+td {
+    border-bottom-color: rgb(76, 103, 129);
+}
+
+/* Override Style */
+.vimvixen-hint {
+    background-color: #b67d00 !important;
+    border-color: #ffff20 !important;
+    color: #ffffff !important;
+}
+#vimvixen-console-frame {
+    color-scheme: light !important;
+}
+::placeholder {
+    opacity: 0.5 !important;
+}
+#edge-translate-panel-body,
+.MuiTypography-body1,
+.nfe-quote-text {
+    color: var(--darkreader-neutral-text) !important;
+}
+gr-main-header {
+    background-color: #1b596d !important;
+}
+.tou-z65h9k,
+.tou-mignzq,
+.tou-1b6i2ox,
+.tou-lnqlqk {
+    background-color: var(--darkreader-neutral-background) !important;
+}
+.tou-75mvi {
+    background-color: #0a3340 !important;
+}
+.tou-ta9e87,
+.tou-1w3fhi0,
+.tou-1b8t2us,
+.tou-py7lfi,
+.tou-1lpmd9d,
+.tou-1frrtv8,
+.tou-17ezmgn {
+    background-color: #131313 !important;
+}
+.tou-uknfeu {
+    background-color: #372409 !important;
+}
+.tou-6i3zyv {
+    background-color: #2983a1 !important;
+}
+div.mermaid-viewer-control-panel .btn {
+    background-color: var(--darkreader-neutral-background);
+    fill: var(--darkreader-neutral-text);
+}
+svg g rect.er {
+    fill: var(--darkreader-neutral-background) !important;
+}
+svg g rect.er.entityBox {
+    fill: var(--darkreader-neutral-background) !important;
+}
+svg g rect.er.attributeBoxOdd {
+    fill: var(--darkreader-neutral-background) !important;
+}
+svg g rect.er.attributeBoxEven {
+    fill: var(--darkreader-selection-background);
+    fill-opacity: 0.8 !important;
+}
+svg rect.er.relationshipLabelBox {
+    fill: var(--darkreader-neutral-background) !important;
+}
+svg g g.nodes rect,
+svg g g.nodes polygon {
+    fill: var(--darkreader-neutral-background) !important;
+}
+svg g rect.task {
+    fill: var(--darkreader-selection-background) !important;
+}
+svg line.messageLine0,
+svg line.messageLine1 {
+    stroke: var(--darkreader-neutral-text) !important;
+}
+div.mermaid .actor {
+    fill: var(--darkreader-neutral-background) !important;
+}
+.google-material-icons {
+    font-family: 'Google Material Icons' !important;
+}
+.google-symbols {
+    font-family: 'Google Symbols Subset', 'Google Symbols' !important;
+}
+.material-icons-extended {
+    font-family: 'Material Icons Extended' !important;
+}
+mitid-authenticators-code-app > .code-app-container {
+    background-color: white !important;
+    padding-top: 1rem;
+}
+iframe#unpaywall[src$="unpaywall.html"] {
+    color-scheme: light !important;
+}
+.oui-icon {
+    font-family: 'Oui Icons' !important;
+}
+embed[type="application/pdf"][src="about:blank"] { filter: invert(100%) contrast(90%); }

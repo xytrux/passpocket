@@ -3,16 +3,15 @@ let countdown;
 function generateSecret() {
     const array = new Uint8Array(10);
     window.crypto.getRandomValues(array);
-    return Array.from(array, (dec) =>
-        ("0" + dec.toString(16)).substr(-2)
-    ).join("");
+    return Array.from(array, (dec) => ("0" + dec.toString(16)).substr(-2)).join(
+        ""
+    );
 }
 
 function generateAuthenticator() {
     const secret = generateSecret();
     const code = otplib.authenticator.generate(secret);
-    const authenticatorInput =
-        document.getElementById("authenticatorInput");
+    const authenticatorInput = document.getElementById("authenticatorInput");
     authenticatorInput.value = code;
 
     saveAuthenticatorCode(secret, code);
@@ -28,18 +27,14 @@ function generateAuthenticator() {
         ).innerText = `Code expires in ${timeLeft} seconds`;
         if (timeLeft <= 0) {
             clearInterval(countdown);
-            document.getElementById("timer").innerText =
-                "Code has expired";
+            document.getElementById("timer").innerText = "Code has expired";
         }
     }, 1000);
 }
 
 function saveAuthenticatorCode(secret, code) {
     const data = { secret, code };
-    localStorage.setItem(
-        "authenticatorData",
-        JSON.stringify(data)
-    );
+    localStorage.setItem("authenticatorData", JSON.stringify(data));
 
     const li = document.createElement("li");
     li.textContent = `Secret: ${secret}, Code: ${code}`;
@@ -54,9 +49,7 @@ function saveAuthenticatorCode(secret, code) {
 }
 
 function getToken() {
-    const data = JSON.parse(
-        localStorage.getItem("authenticatorData")
-    );
+    const data = JSON.parse(localStorage.getItem("authenticatorData"));
     alert(`Secret: ${data.secret}, Code: ${data.code}`);
 }
 
@@ -109,15 +102,10 @@ async function encryptText(text, password) {
         iv.byteLength + encryptedData.byteLength
     );
     encryptedBytes.set(iv, 0);
-    encryptedBytes.set(
-        new Uint8Array(encryptedData),
-        iv.byteLength
-    );
+    encryptedBytes.set(new Uint8Array(encryptedData), iv.byteLength);
 
     // Encode encrypted bytes as Base64 string
-    const encryptedString = btoa(
-        String.fromCharCode(...encryptedBytes)
-    );
+    const encryptedString = btoa(String.fromCharCode(...encryptedBytes));
 
     return encryptedString;
 }
@@ -182,10 +170,7 @@ async function sha256(message) {
     const msgBuffer = new TextEncoder().encode(message);
 
     // hash the message
-    const hashBuffer = await crypto.subtle.digest(
-        "SHA-256",
-        msgBuffer
-    );
+    const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
 
     // convert ArrayBuffer to Array
     const hashArray = Array.from(new Uint8Array(hashBuffer));
@@ -200,25 +185,15 @@ async function setMasterPassword() {
     let masterPassword = document.getElementById(
         "masterPasswordSetInput"
     ).value;
-    localStorage.setItem(
-        "masterPassword",
-        await sha256(masterPassword)
-    );
+    localStorage.setItem("masterPassword", await sha256(masterPassword));
     alert("Master password set successfully!", "success");
     showPage("masterpassword-login");
-    document.getElementById("masterPasswordSetInput").value =
-        "";
-    document
-        .getElementById("setPasswordSidebar")
-        .classList.add("hidden");
-    document
-        .getElementById("loginSidebar")
-        .classList.remove("hidden");
+    document.getElementById("masterPasswordSetInput").value = "";
+    document.getElementById("setPasswordSidebar").classList.add("hidden");
+    document.getElementById("loginSidebar").classList.remove("hidden");
 }
 function deleteData() {
-    if (
-        !confirm("Are you sure you want to delete all data?")
-    ) {
+    if (!confirm("Are you sure you want to delete all data?")) {
         return;
     }
     localStorage.removeItem("masterPassword");
@@ -236,20 +211,13 @@ if (!localStorage.getItem("masterPassword")) {
     showPage("masterpassword-set");
 } else {
     showPage("masterpassword-login");
-    document
-        .getElementById("loginSidebar")
-        .classList.remove("hidden");
-    document
-        .getElementById("setPasswordSidebar")
-        .classList.add("hidden");
+    document.getElementById("loginSidebar").classList.remove("hidden");
+    document.getElementById("setPasswordSidebar").classList.add("hidden");
 }
 async function login() {
-    let masterPassword = document.getElementById(
-        "masterPasswordInput"
-    ).value;
+    let masterPassword = document.getElementById("masterPasswordInput").value;
     let hashedInputPassword = await sha256(masterPassword);
-    let hashedStoredPassword =
-        localStorage.getItem("masterPassword");
+    let hashedStoredPassword = localStorage.getItem("masterPassword");
     if (hashedInputPassword == hashedStoredPassword) {
         masterPassword = null;
         hashedInputPassword = null;
@@ -259,13 +227,10 @@ async function login() {
             document.getElementById("masterPasswordInput").value
         );
 
-        document.getElementById("masterPasswordInput").value =
-            "";
+        document.getElementById("masterPasswordInput").value = "";
         alert("Logged in", "success");
         showPage("password-entry");
-        document
-            .getElementById("loginSidebar")
-            .classList.add("hidden");
+        document.getElementById("loginSidebar").classList.add("hidden");
         document
             .getElementById("passwordEntrySidebar")
             .classList.remove("hidden");
@@ -275,15 +240,13 @@ async function login() {
         document
             .getElementById("passwordDisplaySidebar")
             .classList.remove("hidden");
+        /*
         document
             .getElementById("AuthenticatorSidebar")
             .classList.remove("hidden");
-        document
-            .getElementById("spacerSidebar")
-            .classList.remove("hidden");
-        document
-            .getElementById("logoutSidebar")
-            .classList.remove("hidden");
+            */
+        document.getElementById("spacerSidebar").classList.remove("hidden");
+        document.getElementById("logoutSidebar").classList.remove("hidden");
     } else {
         alert("Invalid master password", "failure");
     }
@@ -294,27 +257,13 @@ function logout() {
     }
     alert("Logged out", "success");
     showPage("masterpassword-login");
-    document
-        .getElementById("loginSidebar")
-        .classList.remove("hidden");
-    document
-        .getElementById("passwordEntrySidebar")
-        .classList.add("hidden");
-    document
-        .getElementById("passwordGeneratorSidebar")
-        .classList.add("hidden");
-    document
-        .getElementById("passwordDisplaySidebar")
-        .classList.add("hidden");
-    document
-        .getElementById("AuthenticatorSidebar")
-        .classList.add("hidden");
-    document
-        .getElementById("spacerSidebar")
-        .classList.add("hidden");
-    document
-        .getElementById("logoutSidebar")
-        .classList.add("hidden");
+    document.getElementById("loginSidebar").classList.remove("hidden");
+    document.getElementById("passwordEntrySidebar").classList.add("hidden");
+    document.getElementById("passwordGeneratorSidebar").classList.add("hidden");
+    document.getElementById("passwordDisplaySidebar").classList.add("hidden");
+    document.getElementById("AuthenticatorSidebar").classList.add("hidden");
+    document.getElementById("spacerSidebar").classList.add("hidden");
+    document.getElementById("logoutSidebar").classList.add("hidden");
 }
 let userAgent = navigator.userAgent.toLowerCase();
 if (userAgent.indexOf(" electron/") > -1) {
@@ -339,38 +288,26 @@ if (storedTheme) {
     themeSelection.value = storedTheme;
     if (storedTheme === "dark") {
         document.getElementById("dark").disabled = false;
-        document.getElementById(
-            "darkCatppuccin"
-        ).disabled = true;
+        document.getElementById("darkCatppuccin").disabled = true;
     } else if (storedTheme === "dark-catppuccin") {
         document.getElementById("dark").disabled = true;
-        document.getElementById(
-            "darkCatppuccin"
-        ).disabled = false;
+        document.getElementById("darkCatppuccin").disabled = false;
     } else {
         document.getElementById("dark").disabled = true;
-        document.getElementById(
-            "darkCatppuccin"
-        ).disabled = true;
+        document.getElementById("darkCatppuccin").disabled = true;
     }
 }
 themeSelection.addEventListener("change", (event) => {
     const theme = event.target.value;
     if (theme === "dark") {
         document.getElementById("dark").disabled = false;
-        document.getElementById(
-            "darkCatppuccin"
-        ).disabled = true;
+        document.getElementById("darkCatppuccin").disabled = true;
     } else if (theme === "dark-catppuccin") {
         document.getElementById("dark").disabled = true;
-        document.getElementById(
-            "darkCatppuccin"
-        ).disabled = false;
+        document.getElementById("darkCatppuccin").disabled = false;
     } else {
         document.getElementById("dark").disabled = true;
-        document.getElementById(
-            "darkCatppuccin"
-        ).disabled = true;
+        document.getElementById("darkCatppuccin").disabled = true;
     }
     localStorage.setItem("theme", theme);
 });
@@ -398,13 +335,9 @@ async function storePassword() {
         document.getElementById("websiteInput").value,
         localStorage.getItem("masterPasswordPlain")
     );
-    let passwords =
-        JSON.parse(localStorage.getItem("passwords")) || [];
+    let passwords = JSON.parse(localStorage.getItem("passwords")) || [];
     passwords.push({ username, password, website });
-    localStorage.setItem(
-        "passwords",
-        JSON.stringify(passwords)
-    );
+    localStorage.setItem("passwords", JSON.stringify(passwords));
     alert("Password stored successfully!", "success");
     username.value = "";
     password.value = "";
@@ -416,17 +349,13 @@ function generatePassword() {
         "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[]\\{}|:\";'<>?,./~`";
     let password = "";
     for (let i = 0; i < length; i++) {
-        password += charset.charAt(
-            Math.floor(Math.random() * charset.length)
-        );
+        password += charset.charAt(Math.floor(Math.random() * charset.length));
     }
-    document.getElementById("generatedPassword").value =
-        password;
+    document.getElementById("generatedPassword").value = password;
 }
 
 async function displayPasswords() {
-    const passwords =
-        JSON.parse(localStorage.getItem("passwords")) || [];
+    const passwords = JSON.parse(localStorage.getItem("passwords")) || [];
     const table = document.getElementById("passwordTable");
     table.innerHTML = `<tr><th>Website</th><th>Username</th><th>Password</th><th>Action</th></tr>`;
     passwords.forEach(async (entry, index) => {
@@ -444,13 +373,9 @@ async function displayPasswords() {
 }
 
 function deletePassword(index) {
-    let passwords =
-        JSON.parse(localStorage.getItem("passwords")) || [];
+    let passwords = JSON.parse(localStorage.getItem("passwords")) || [];
     passwords.splice(index, 1);
-    localStorage.setItem(
-        "passwords",
-        JSON.stringify(passwords)
-    );
+    localStorage.setItem("passwords", JSON.stringify(passwords));
     alert("Password deleted successfully!", "success");
     displayPasswords();
 }

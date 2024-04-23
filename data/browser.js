@@ -215,15 +215,15 @@ async function setMasterPassword() {
         .getElementById("loginSidebar")
         .classList.remove("hidden");
 }
-function deleteLogins() {
+function deleteData() {
     if (
-        !confirm("Are you sure you want to delete all logins?")
+        !confirm("Are you sure you want to delete all data?")
     ) {
         return;
     }
     localStorage.removeItem("masterPassword");
     localStorage.removeItem("passwords");
-    alert("Logins deleted successfully!", "success");
+    alert("Data deleted successfully!", "success");
     setTimeout(() => {
         location.reload();
     }, 1500);

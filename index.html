@@ -4,12 +4,12 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Passpocket - Password Manager</title>
-        <link href="toastify.css" rel="stylesheet" />
-        <link rel="icon" type="image/x-icon" href="favicon.ico" />
-        <link href="base.css" rel="stylesheet" />
-        <link href="dark.css" rel="stylesheet" id="dark" disabled />
+        <link href="data/toastify.css" rel="stylesheet" />
+        <link rel="icon" type="image/x-icon" href="data/favicon.ico" />
+        <link href="data/base.css" rel="stylesheet" />
+        <link href="data/dark.css" rel="stylesheet" id="dark" disabled />
         <link
-            href="dark-catppuccin.css"
+            href="data/dark-catppuccin.css"
             rel="stylesheet"
             id="darkCatppuccin"
             disabled
@@ -17,8 +17,9 @@
     </head>
 
     <body>
-        <script src="toastify.js"></script>
-        <!-- <script src="darkreader.js"></script> -->
+        <script src="data/toastify.js"></script>
+        <script src="data/optlib-buffer.js"></script>
+        <script src="data/optlib-index.js"></script>
         <div id="sidebar">
             <ul>
                 <li id="setPasswordSidebar">
@@ -168,10 +169,7 @@
                     Set Master Password
                 </button>
             </div>
-
-            <script src="optlib-buffer.js"></script>
-            <script src="optlib-index.js"></script>
-            <script src="browser.js"></script>
+            <script src="data/browser.js"></script>
         </div>
     </body>
 </html>

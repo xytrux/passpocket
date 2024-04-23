@@ -1,652 +1,715 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Passpocket - Password Manager</title>
-        <link href="toastify.css" rel="stylesheet" />
-        <link rel="icon" type="image/x-icon" href="favicon.ico" />
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 0;
-                background-color: #f4f4f4;
-                overflow-x: hidden;
-            }
 
-            #sidebar {
-                position: fixed;
-                top: 0;
-                left: 0;
-                height: 100%;
-                width: 250px;
-                background-color: #333;
-                color: #fff;
-                padding-top: 20px;
-            }
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Passpocket - Password Manager</title>
+    <link href="toastify.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            overflow-x: hidden;
+        }
 
-            #sidebar ul {
-                list-style-type: none;
-                padding: 0;
-            }
+        #sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 250px;
+            background-color: #333;
+            color: #fff;
+            padding-top: 20px;
+        }
 
-            #sidebar li {
-                margin-bottom: 10px;
-            }
+        #sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
 
-            #sidebar li a {
-                display: block;
-                padding: 10px 20px;
-                color: #fff;
-                text-decoration: none;
-                transition: background-color 0.3s;
-            }
+        #sidebar li {
+            margin-bottom: 10px;
+        }
 
-            #sidebar li a:hover {
-                background-color: #555;
-            }
+        #sidebar li a {
+            display: block;
+            padding: 10px 20px;
+            color: #fff;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
 
-            #content {
-                margin-left: 250px;
-                padding: 20px;
-            }
+        #sidebar li a:hover {
+            background-color: #555;
+        }
 
-            .page {
-                display: none;
-            }
+        #content {
+            margin-left: 250px;
+            padding: 20px;
+        }
 
-            .page.active {
-                display: block;
-            }
+        .page {
+            display: none;
+        }
 
-            .page.fade-out {
-                animation: fadeOut 0.5s;
-            }
+        .page.active {
+            display: block;
+        }
 
-            button {
-                padding: 10px 20px;
-                background-color: #32a2e8;
-                color: #fff;
-                border: none;
-                cursor: pointer;
-                border-radius: 5px;
-                margin-top: 10px;
-            }
+        .page.fade-out {
+            animation: fadeOut 0.5s;
+        }
 
-            button:hover {
-                background-color: #4dbaf0;
-            }
+        button {
+            padding: 10px 20px;
+            background-color: #32a2e8;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
 
-            input[type="text"],
-            input[type="password"] {
-                padding: 10px;
-                width: calc(100% - 20px);
-                margin-bottom: 10px;
-                border-radius: 5px;
-                border: 1px solid #adc6cc;
-            }
+        button:hover {
+            background-color: #4dbaf0;
+        }
 
-            select {
-                padding: 10px;
-                margin-bottom: 10px;
-                border-radius: 5px;
-                border: 1px solid #adc6cc;
-            }
+        input[type="text"],
+        input[type="password"] {
+            padding: 10px;
+            width: calc(100% - 20px);
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #adc6cc;
+        }
 
-            table {
-                width: 100%;
-                border-collapse: collapse;
-            }
+        select {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #adc6cc;
+        }
 
-            th,
-            td {
-                padding: 8px;
-                text-align: left;
-                border-bottom: 1px solid #bacad8;
-            }
-            hr {
-                visibility: hidden;
-            }
-            .hidden {
-                display: none;
-            }
-        </style>
-        <link href="dark.css" rel="stylesheet" id="dark" disabled />
-        <link
-            href="dark-catppuccin.css"
-            rel="stylesheet"
-            id="darkCatppuccin"
-            disabled
-        />
-    </head>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
 
-    <body>
-        <script src="toastify.js"></script>
-        <!-- <script src="darkreader.js"></script> -->
-        <div id="sidebar">
-            <ul>
-                <li id="setPasswordSidebar">
-                    <a href="#" onclick="showPage('masterpassword-set')"
-                        >Set Password</a
-                    >
-                </li>
-                <li id="loginSidebar" class="hidden">
-                    <a href="#" onclick="showPage('masterpassword-login')"
-                        >Login</a
-                    >
-                </li>
-                <li class="hidden" id="passwordEntrySidebar">
-                    <a href="#" onclick="showPage('password-entry')"
-                        >Password Entry</a
-                    >
-                </li>
-                <li class="hidden" id="passwordGeneratorSidebar">
-                    <a href="#" onclick="showPage('password-generator')"
-                        >Password Generator</a
-                    >
-                </li>
-                <li class="hidden" id="passwordDisplaySidebar">
-                    <a href="#" onclick="showPage('password-display')"
-                        >View Passwords</a
-                    >
-                </li>
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #bacad8;
+        }
+
+        hr {
+            visibility: hidden;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+    <link href="dark.css" rel="stylesheet" id="dark" disabled />
+    <link href="dark-catppuccin.css" rel="stylesheet" id="darkCatppuccin" disabled />
+</head>
+
+<body>
+    <script src="toastify.js"></script>
+    <!-- <script src="darkreader.js"></script> -->
+    <div id="sidebar">
+        <ul>
+            <li id="setPasswordSidebar">
+                <a href="#" onclick="showPage('masterpassword-set')">Set Password</a>
+            </li>
+            <li id="loginSidebar" class="hidden">
+                <a href="#" onclick="showPage('masterpassword-login')">Login</a>
+            </li>
+            <li class="hidden" id="passwordEntrySidebar">
+                <a href="#" onclick="showPage('password-entry')">Password Entry</a>
+            </li>
+            <li class="hidden" id="passwordGeneratorSidebar">
+                <a href="#" onclick="showPage('password-generator')">Password Generator</a>
+            </li>
+            <li class="hidden" id="passwordDisplaySidebar">
+                <a href="#" onclick="showPage('password-display')">View Passwords</a>
+            </li>
+            <li class="hidden" id="AuthenticatorSidebar">
+                <a href="#" onclick="showPage('authenticator')">Authenticator</a>
                 <hr class="hidden" id="spacerSidebar" />
-                <li id="optionsSidebar">
-                    <a href="#" onclick="showPage('options')">Options</a>
-                </li>
-                <li class="hidden" id="logoutSidebar">
-                    <a href="#" onclick="logout()">Logout</a>
-                </li>
-                <li><a href="#" onclick="closePage()">Close</a></li>
-            </ul>
+            <li id="optionsSidebar">
+                <a href="#" onclick="showPage('options')">Options</a>
+            </li>
+            <li class="hidden" id="logoutSidebar">
+                <a href="#" onclick="logout()">Logout</a>
+            </li>
+            <li><a href="#" onclick="closePage()">Close</a></li>
+        </ul>
+    </div>
+
+    <div id="content">
+        <div id="password-entry" class="page">
+            <h2>Password Entry</h2>
+            <input type="text" id="usernameInput" placeholder="Enter username" />
+            <input type="password" id="passwordInput" placeholder="Enter password" />
+            <input type="text" id="websiteInput" placeholder="Enter website" />
+            <button onclick="storePassword()">Store Password</button>
         </div>
 
-        <div id="content">
-            <div id="password-entry" class="page">
-                <h2>Password Entry</h2>
-                <input
-                    type="text"
-                    id="usernameInput"
-                    placeholder="Enter username"
-                />
-                <input
-                    type="password"
-                    id="passwordInput"
-                    placeholder="Enter password"
-                />
-                <input
-                    type="text"
-                    id="websiteInput"
-                    placeholder="Enter website"
-                />
-                <button onclick="storePassword()">Store Password</button>
-            </div>
+        <div id="options" class="page">
+            <h2>Options</h2>
+            <label for="theme">Theme</label>
+            <select name="theme" id="theme">
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+                <option value="dark-catppuccin">Dark (Catppuccin)</option>
+            </select>
+            <br /><br />
+            <label for="encryptionType">Encryption Type</label>
+            <select name="encryptionType" id="encryptionType">
+                <optgroup label="Web + App">
+                    <option value="AES-GCM">AES-GCM</option>
+                    <option value="AES-CBC">AES-CBC</option>
+                    <option value="AES-ECB">AES-CTR</option>
+                </optgroup>
+                <optgroup label="App Only">
+                    <option value="Serpent-Twofish-AES" id="s-t-aes" disabled>
+                        Serpent-Twofish-AES <strong>(Recommended)</strong>
+                    </option>
+                </optgroup>
+            </select>
+        </div>
 
-            <div id="options" class="page">
-                <h2>Options</h2>
-                <label for="theme">Theme</label>
-                <select name="theme" id="theme">
-                    <option value="light">Light</option>
-                    <option value="dark">Dark</option>
-                    <option value="dark-catppuccin">Dark (Catppuccin)</option>
-                </select>
-                <br /><br />
-                <label for="encryptionType">Encryption Type</label>
-                <select name="encryptionType" id="encryptionType">
-                    <optgroup label="Web + App">
-                        <option value="AES-GCM">AES-GCM</option>
-                        <option value="AES-CBC">AES-CBC</option>
-                        <option value="AES-ECB">AES-CTR</option>
-                    </optgroup>
-                    <optgroup label="App Only">
-                        <option
-                            value="Serpent-Twofish-AES"
-                            id="s-t-aes"
-                            disabled
-                        >
-                            Serpent-Twofish-AES <strong>(Recommended)</strong>
-                        </option>
-                    </optgroup>
-                </select>
-            </div>
+        <div id="password-generator" class="page">
+            <h2>Password Generator</h2>
+            <input type="text" id="generatedPassword" readonly />
+            <button onclick="generatePassword()">Generate Password</button>
+        </div>
 
-            <div id="password-generator" class="page">
-                <h2>Password Generator</h2>
-                <input type="text" id="generatedPassword" readonly />
-                <button onclick="generatePassword()">Generate Password</button>
-            </div>
+        <div id="password-display" class="page">
+            <h2>Stored Passwords</h2>
+            <table id="passwordTable">
+                <tr>
+                    <th>Website</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Action</th>
+                </tr>
+            </table>
+        </div>
 
-            <div id="password-display" class="page">
-                <h2>Stored Passwords</h2>
-                <table id="passwordTable">
-                    <tr>
-                        <th>Website</th>
-                        <th>Username</th>
-                        <th>Password</th>
-                        <th>Action</th>
-                    </tr>
-                </table>
-            </div>
+        <div id="authenticator" class="page">
+            <h2>Authenticator</h2>
+            <input type="text" id="authenticatorInput" placeholder="Enter authenticator code" />
+            <p id="timer"></p>
+            <button onclick="generateAuthenticator()">Generate</button>
+            <button onclick="saveAuthenticatorCode()">Save Code</button>
+            <button onclick="getToken()">Get Token</button>
+            <h2>Saved Codes</h2>
+            <ul id="savedCodes"></ul>
+        </div>
 
-            <div id="masterpassword-login" class="page active">
-                <h2>Master Password</h2>
-                <input
-                    type="password"
-                    id="masterPasswordInput"
-                    placeholder="Enter master password"
-                />
-                <button onclick="login()">Login</button>
-                <br />
-                <button onclick="deleteLogins()">Delete Logins</button>
-            </div>
+        <div id="masterpassword-login" class="page active">
+            <h2>Master Password</h2>
+            <input type="password" id="masterPasswordInput" placeholder="Enter master password" />
+            <button onclick="login()">Login</button>
+            <br />
+            <button onclick="deleteLogins()">Delete Logins</button>
+        </div>
 
-            <div id="masterpassword-set" class="page">
-                <h2>Set Master Password</h2>
-                <input
-                    type="password"
-                    id="masterPasswordSetInput"
-                    placeholder="Enter master password"
-                />
-                <button onclick="setMasterPassword()">
-                    Set Master Password
-                </button>
-            </div>
-            <script>
-                async function encryptText(text, password) {
-                    const encoder = new TextEncoder();
-                    const encodedText = encoder.encode(text);
+        <div id="masterpassword-set" class="page">
+            <h2>Set Master Password</h2>
+            <input type="password" id="masterPasswordSetInput" placeholder="Enter master password" />
+            <button onclick="setMasterPassword()">
+                Set Master Password
+            </button>
+        </div>
+        <script>
+            let countdown;
 
-                    // Derive a 256-bit key from the password using PBKDF2
-                    const keyMaterial = await crypto.subtle.importKey(
-                        "raw",
-                        encoder.encode(password),
-                        { name: "PBKDF2" },
-                        false,
-                        ["deriveBits"]
-                    );
+            async function generateAuthenticator() {
+                const secret = generateSecret();
+                const code = await generateTOTP(secret); // Add await here
+                const authenticatorInput = document.getElementById("authenticatorInput");
+                authenticatorInput.value = code;
 
-                    const key = await crypto.subtle.deriveBits(
-                        {
-                            name: "PBKDF2",
-                            salt: new Uint8Array(0),
-                            iterations: 100000, // Adjust as needed
-                            hash: "SHA-256",
-                        },
-                        keyMaterial,
-                        256
-                    );
-
-                    // Convert derived bits to a CryptoKey object
-                    const cryptoKey = await crypto.subtle.importKey(
-                        "raw",
-                        key,
-                        { name: "AES-GCM" },
-                        false,
-                        ["encrypt"]
-                    );
-
-                    const iv = crypto.getRandomValues(new Uint8Array(12));
-
-                    const encryptedData = await crypto.subtle.encrypt(
-                        {
-                            name: "AES-GCM",
-                            iv: iv,
-                        },
-                        cryptoKey,
-                        encodedText
-                    );
-
-                    // Combine IV and encrypted data
-                    const encryptedBytes = new Uint8Array(
-                        iv.byteLength + encryptedData.byteLength
-                    );
-                    encryptedBytes.set(iv, 0);
-                    encryptedBytes.set(
-                        new Uint8Array(encryptedData),
-                        iv.byteLength
-                    );
-
-                    // Encode encrypted bytes as Base64 string
-                    const encryptedString = btoa(
-                        String.fromCharCode(...encryptedBytes)
-                    );
-
-                    return encryptedString;
+                if (countdown) {
+                    clearInterval(countdown);
                 }
+                let timeLeft = 30;
+                countdown = setInterval(() => {
+                    timeLeft--;
+                    document.getElementById("timer").innerText = `Code expires in ${timeLeft} seconds`;
+                    if (timeLeft <= 0) {
+                        clearInterval(countdown);
+                        document.getElementById("timer").innerText = "Code has expired";
+                    }
+                }, 1000);
+            }
 
-                async function decryptText(encryptedString, password) {
-                    const decoder = new TextDecoder();
+            function generateSecret() {
+                const array = new Uint8Array(10);
+                window.crypto.getRandomValues(array);
+                return Array.from(array, dec => ('0' + dec.toString(16)).substr(-2)).join('');
+            }
 
-                    // Decode Base64 string to bytes
-                    const encryptedBytes = new Uint8Array(
-                        atob(encryptedString)
-                            .split("")
-                            .map((c) => c.charCodeAt(0))
-                    );
+            async function generateTOTP(secret) {
+                const encoder = new TextEncoder();
+                const key = await window.crypto.subtle.importKey(
+                    "raw",
+                    encoder.encode(secret),
+                    { name: "HMAC", hash: "SHA-1" },
+                    false,
+                    ["sign"]
+                );
 
-                    // Extract IV and data
-                    const iv = encryptedBytes.slice(0, 12);
-                    const data = encryptedBytes.slice(12);
+                const time = Math.floor(Date.now() / 1000);
+                const timeStep = 30;
+                const counter = new Uint8Array(8);
+                const counterView = new DataView(counter.buffer);
+                counterView.setUint32(0, Math.floor(time / timeStep), false);
 
-                    // Derive the same 256-bit key from the password
-                    const keyMaterial = await crypto.subtle.importKey(
-                        "raw",
-                        new TextEncoder().encode(password),
-                        { name: "PBKDF2" },
-                        false,
-                        ["deriveBits"]
-                    );
+                const hmacResult = await window.crypto.subtle.sign("HMAC", key, counter);
 
-                    const key = await crypto.subtle.deriveBits(
-                        {
-                            name: "PBKDF2",
-                            salt: new Uint8Array(0),
-                            iterations: 100000, // Adjust as needed
-                            hash: "SHA-256",
-                        },
-                        keyMaterial,
-                        256
-                    );
+                const hmacResultArray = new Uint8Array(hmacResult);
+                const offset = hmacResultArray[hmacResultArray.length - 1] & 0xf;
+                const otp =
+                    ((hmacResultArray[offset] & 0x7f) << 24) |
+                    ((hmacResultArray[offset + 1] & 0xff) << 16) |
+                    ((hmacResultArray[offset + 2] & 0xff) << 8) |
+                    (hmacResultArray[offset + 3] & 0xff);
 
-                    // Convert derived bits to a CryptoKey object
-                    const cryptoKey = await crypto.subtle.importKey(
-                        "raw",
-                        key,
-                        { name: "AES-GCM" },
-                        false,
-                        ["decrypt"]
-                    );
+                const digits = 6;
+                const otpString = (otp % Math.pow(10, digits)).toString().padStart(digits, '0');
+                return otpString;
+            }
 
-                    // Decrypt data
-                    const decryptedData = await crypto.subtle.decrypt(
-                        {
-                            name: "AES-GCM",
-                            iv: iv,
-                        },
-                        cryptoKey,
-                        data
-                    );
+            function saveAuthenticatorCode() {
+                const code = document.getElementById("authenticatorInput").value;
+                localStorage.setItem("authenticatorCode", code);
 
-                    return decoder.decode(decryptedData);
+                const li = document.createElement("li");
+                li.textContent = code;
+                const deleteButton = document.createElement("button");
+                deleteButton.textContent = "Delete";
+                deleteButton.onclick = function () {
+                    this.parentElement.remove();
+                };
+                li.appendChild(deleteButton);
+                document.getElementById("savedCodes").appendChild(li);
+            }
+
+            function getToken() {
+                const token = localStorage.getItem("authenticatorCode");
+                alert(token);
+            }
+
+            async function encryptText(text, password) {
+                const encoder = new TextEncoder();
+                const encodedText = encoder.encode(text);
+
+                // Derive a 256-bit key from the password using PBKDF2
+                const keyMaterial = await crypto.subtle.importKey(
+                    "raw",
+                    encoder.encode(password),
+                    { name: "PBKDF2" },
+                    false,
+                    ["deriveBits"]
+                );
+
+                const key = await crypto.subtle.deriveBits(
+                    {
+                        name: "PBKDF2",
+                        salt: new Uint8Array(0),
+                        iterations: 100000, // Adjust as needed
+                        hash: "SHA-256",
+                    },
+                    keyMaterial,
+                    256
+                );
+
+                // Convert derived bits to a CryptoKey object
+                const cryptoKey = await crypto.subtle.importKey(
+                    "raw",
+                    key,
+                    { name: "AES-GCM" },
+                    false,
+                    ["encrypt"]
+                );
+
+                const iv = crypto.getRandomValues(new Uint8Array(12));
+
+                const encryptedData = await crypto.subtle.encrypt(
+                    {
+                        name: "AES-GCM",
+                        iv: iv,
+                    },
+                    cryptoKey,
+                    encodedText
+                );
+
+                // Combine IV and encrypted data
+                const encryptedBytes = new Uint8Array(
+                    iv.byteLength + encryptedData.byteLength
+                );
+                encryptedBytes.set(iv, 0);
+                encryptedBytes.set(
+                    new Uint8Array(encryptedData),
+                    iv.byteLength
+                );
+
+                // Encode encrypted bytes as Base64 string
+                const encryptedString = btoa(
+                    String.fromCharCode(...encryptedBytes)
+                );
+
+                return encryptedString;
+            }
+
+            async function decryptText(encryptedString, password) {
+                const decoder = new TextDecoder();
+
+                // Decode Base64 string to bytes
+                const encryptedBytes = new Uint8Array(
+                    atob(encryptedString)
+                        .split("")
+                        .map((c) => c.charCodeAt(0))
+                );
+
+                // Extract IV and data
+                const iv = encryptedBytes.slice(0, 12);
+                const data = encryptedBytes.slice(12);
+
+                // Derive the same 256-bit key from the password
+                const keyMaterial = await crypto.subtle.importKey(
+                    "raw",
+                    new TextEncoder().encode(password),
+                    { name: "PBKDF2" },
+                    false,
+                    ["deriveBits"]
+                );
+
+                const key = await crypto.subtle.deriveBits(
+                    {
+                        name: "PBKDF2",
+                        salt: new Uint8Array(0),
+                        iterations: 100000, // Adjust as needed
+                        hash: "SHA-256",
+                    },
+                    keyMaterial,
+                    256
+                );
+
+                // Convert derived bits to a CryptoKey object
+                const cryptoKey = await crypto.subtle.importKey(
+                    "raw",
+                    key,
+                    { name: "AES-GCM" },
+                    false,
+                    ["decrypt"]
+                );
+
+                // Decrypt data
+                const decryptedData = await crypto.subtle.decrypt(
+                    {
+                        name: "AES-GCM",
+                        iv: iv,
+                    },
+                    cryptoKey,
+                    data
+                );
+
+                return decoder.decode(decryptedData);
+            }
+            async function sha256(message) {
+                // encode as UTF-8
+                const msgBuffer = new TextEncoder().encode(message);
+
+                // hash the message
+                const hashBuffer = await crypto.subtle.digest(
+                    "SHA-256",
+                    msgBuffer
+                );
+
+                // convert ArrayBuffer to Array
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+
+                // convert bytes to hex string
+                const hashHex = hashArray
+                    .map((b) => b.toString(16).padStart(2, "0"))
+                    .join("");
+                return hashHex;
+            }
+            async function setMasterPassword() {
+                let masterPassword = document.getElementById(
+                    "masterPasswordSetInput"
+                ).value;
+                localStorage.setItem(
+                    "masterPassword",
+                    await sha256(masterPassword)
+                );
+                alert("Master password set successfully!", "success");
+                showPage("masterpassword-login");
+                document.getElementById("masterPasswordSetInput").value =
+                    "";
+                document
+                    .getElementById("setPasswordSidebar")
+                    .classList.add("hidden");
+                document
+                    .getElementById("loginSidebar")
+                    .classList.remove("hidden");
+            }
+            function deleteLogins() {
+                if (
+                    !confirm("Are you sure you want to delete all logins?")
+                ) {
+                    return;
                 }
-                async function sha256(message) {
-                    // encode as UTF-8
-                    const msgBuffer = new TextEncoder().encode(message);
-
-                    // hash the message
-                    const hashBuffer = await crypto.subtle.digest(
-                        "SHA-256",
-                        msgBuffer
-                    );
-
-                    // convert ArrayBuffer to Array
-                    const hashArray = Array.from(new Uint8Array(hashBuffer));
-
-                    // convert bytes to hex string
-                    const hashHex = hashArray
-                        .map((b) => b.toString(16).padStart(2, "0"))
-                        .join("");
-                    return hashHex;
-                }
-                async function setMasterPassword() {
-                    let masterPassword = document.getElementById(
-                        "masterPasswordSetInput"
-                    ).value;
+                localStorage.removeItem("masterPassword");
+                localStorage.removeItem("passwords");
+                alert("Logins deleted successfully!", "success");
+                setTimeout(() => {
+                    location.reload();
+                }, 1500);
+            }
+            // only show register page if master password is not set
+            if (localStorage.getItem("masterPasswordPlain")) {
+                localStorage.removeItem("masterPasswordPlain");
+            }
+            if (!localStorage.getItem("masterPassword")) {
+                showPage("masterpassword-set");
+            } else {
+                showPage("masterpassword-login");
+                document
+                    .getElementById("loginSidebar")
+                    .classList.remove("hidden");
+                document
+                    .getElementById("setPasswordSidebar")
+                    .classList.add("hidden");
+            }
+            async function login() {
+                let masterPassword = document.getElementById(
+                    "masterPasswordInput"
+                ).value;
+                let hashedInputPassword = await sha256(masterPassword);
+                let hashedStoredPassword =
+                    localStorage.getItem("masterPassword");
+                if (hashedInputPassword == hashedStoredPassword) {
+                    masterPassword = null;
+                    hashedInputPassword = null;
+                    hashedStoredPassword = null;
                     localStorage.setItem(
-                        "masterPassword",
-                        await sha256(masterPassword)
+                        "masterPasswordPlain",
+                        document.getElementById("masterPasswordInput").value
                     );
-                    alert("Master password set successfully!", "success");
-                    showPage("masterpassword-login");
-                    document.getElementById("masterPasswordSetInput").value =
+
+                    document.getElementById("masterPasswordInput").value =
                         "";
-                    document
-                        .getElementById("setPasswordSidebar")
-                        .classList.add("hidden");
+                    alert("Logged in", "success");
+                    showPage("password-entry");
                     document
                         .getElementById("loginSidebar")
+                        .classList.add("hidden");
+                    document
+                        .getElementById("passwordEntrySidebar")
                         .classList.remove("hidden");
+                    document
+                        .getElementById("passwordGeneratorSidebar")
+                        .classList.remove("hidden");
+                    document
+                        .getElementById("passwordDisplaySidebar")
+                        .classList.remove("hidden");
+                    document
+                        .getElementById("AuthenticatorSidebar")
+                        .classList.remove("hidden");
+                    document
+                        .getElementById("spacerSidebar")
+                        .classList.remove("hidden");
+                    document
+                        .getElementById("logoutSidebar")
+                        .classList.remove("hidden");
+                } else {
+                    alert("Invalid master password", "failure");
                 }
-                function deleteLogins() {
-                    if (
-                        !confirm("Are you sure you want to delete all logins?")
-                    ) {
-                        return;
-                    }
-                    localStorage.removeItem("masterPassword");
-                    localStorage.removeItem("passwords");
-                    alert("Logins deleted successfully!", "success");
-                    setTimeout(() => {
-                        location.reload();
-                    }, 1500);
-                }
-                // only show register page if master password is not set
+            }
+            function logout() {
                 if (localStorage.getItem("masterPasswordPlain")) {
                     localStorage.removeItem("masterPasswordPlain");
                 }
-                if (!localStorage.getItem("masterPassword")) {
-                    showPage("masterpassword-set");
+                alert("Logged out", "success");
+                showPage("masterpassword-login");
+                document
+                    .getElementById("loginSidebar")
+                    .classList.remove("hidden");
+                document
+                    .getElementById("passwordEntrySidebar")
+                    .classList.add("hidden");
+                document
+                    .getElementById("passwordGeneratorSidebar")
+                    .classList.add("hidden");
+                document
+                    .getElementById("passwordDisplaySidebar")
+                    .classList.add("hidden");
+                document
+                    .getElementById("AuthenticatorSidebar")
+                    .classList.add("hidden");
+                document
+                    .getElementById("spacerSidebar")
+                    .classList.add("hidden");
+                document
+                    .getElementById("logoutSidebar")
+                    .classList.add("hidden");
+            }
+            let userAgent = navigator.userAgent.toLowerCase();
+            if (userAgent.indexOf(" electron/") > -1) {
+                document.getElementById("s-t-aes").disabled = false;
+            } else {
+                document.getElementById("s-t-aes").disabled = false;
+            }
+
+            // const darkReader = require("darkreader");
+            /*
+            DarkReader.auto({
+                brightness: 100,
+                contrast: 90,
+                sepia: 10,
+            });
+            */
+
+            // theme selection code
+            const themeSelection = document.getElementById("theme");
+            const storedTheme = localStorage.getItem("theme");
+            if (storedTheme) {
+                themeSelection.value = storedTheme;
+                if (storedTheme === "dark") {
+                    document.getElementById("dark").disabled = false;
+                    document.getElementById(
+                        "darkCatppuccin"
+                    ).disabled = true;
+                } else if (storedTheme === "dark-catppuccin") {
+                    document.getElementById("dark").disabled = true;
+                    document.getElementById(
+                        "darkCatppuccin"
+                    ).disabled = false;
                 } else {
-                    showPage("masterpassword-login");
-                    document
-                        .getElementById("loginSidebar")
-                        .classList.remove("hidden");
-                    document
-                        .getElementById("setPasswordSidebar")
-                        .classList.add("hidden");
+                    document.getElementById("dark").disabled = true;
+                    document.getElementById(
+                        "darkCatppuccin"
+                    ).disabled = true;
                 }
-                async function login() {
-                    let masterPassword = document.getElementById(
-                        "masterPasswordInput"
-                    ).value;
-                    let hashedInputPassword = await sha256(masterPassword);
-                    let hashedStoredPassword =
-                        localStorage.getItem("masterPassword");
-                    if (hashedInputPassword == hashedStoredPassword) {
-                        masterPassword = null;
-                        hashedInputPassword = null;
-                        hashedStoredPassword = null;
-                        localStorage.setItem(
-                            "masterPasswordPlain",
-                            document.getElementById("masterPasswordInput").value
-                        );
-
-                        document.getElementById("masterPasswordInput").value =
-                            "";
-                        alert("Logged in", "success");
-                        showPage("password-entry");
-                        document
-                            .getElementById("loginSidebar")
-                            .classList.add("hidden");
-                        document
-                            .getElementById("passwordEntrySidebar")
-                            .classList.remove("hidden");
-                        document
-                            .getElementById("passwordGeneratorSidebar")
-                            .classList.remove("hidden");
-                        document
-                            .getElementById("passwordDisplaySidebar")
-                            .classList.remove("hidden");
-                        document
-                            .getElementById("spacerSidebar")
-                            .classList.remove("hidden");
-                        document
-                            .getElementById("logoutSidebar")
-                            .classList.remove("hidden");
-                    } else {
-                        alert("Invalid master password", "failure");
-                    }
-                }
-                function logout() {
-                    if (localStorage.getItem("masterPasswordPlain")) {
-                        localStorage.removeItem("masterPasswordPlain");
-                    }
-                    alert("Logged out", "success");
-                    showPage("masterpassword-login");
-                    document
-                        .getElementById("loginSidebar")
-                        .classList.remove("hidden");
-                    document
-                        .getElementById("passwordEntrySidebar")
-                        .classList.add("hidden");
-                    document
-                        .getElementById("passwordGeneratorSidebar")
-                        .classList.add("hidden");
-                    document
-                        .getElementById("passwordDisplaySidebar")
-                        .classList.add("hidden");
-                    document
-                        .getElementById("spacerSidebar")
-                        .classList.add("hidden");
-                    document
-                        .getElementById("logoutSidebar")
-                        .classList.add("hidden");
-                }
-                let userAgent = navigator.userAgent.toLowerCase();
-                if (userAgent.indexOf(" electron/") > -1) {
-                    document.getElementById("s-t-aes").disabled = false;
+            }
+            themeSelection.addEventListener("change", (event) => {
+                const theme = event.target.value;
+                if (theme === "dark") {
+                    document.getElementById("dark").disabled = false;
+                    document.getElementById(
+                        "darkCatppuccin"
+                    ).disabled = true;
+                } else if (theme === "dark-catppuccin") {
+                    document.getElementById("dark").disabled = true;
+                    document.getElementById(
+                        "darkCatppuccin"
+                    ).disabled = false;
                 } else {
-                    document.getElementById("s-t-aes").disabled = false;
+                    document.getElementById("dark").disabled = true;
+                    document.getElementById(
+                        "darkCatppuccin"
+                    ).disabled = true;
                 }
+                localStorage.setItem("theme", theme);
+            });
 
-                // const darkReader = require("darkreader");
-                /*
-                DarkReader.auto({
-                    brightness: 100,
-                    contrast: 90,
-                    sepia: 10,
+            function showPage(pageId) {
+                document.querySelectorAll(".page").forEach((page) => {
+                    page.classList.remove("active");
                 });
-                */
-
-                // theme selection code
-                const themeSelection = document.getElementById("theme");
-                const storedTheme = localStorage.getItem("theme");
-                if (storedTheme) {
-                    themeSelection.value = storedTheme;
-                    if (storedTheme === "dark") {
-                        document.getElementById("dark").disabled = false;
-                        document.getElementById(
-                            "darkCatppuccin"
-                        ).disabled = true;
-                    } else if (storedTheme === "dark-catppuccin") {
-                        document.getElementById("dark").disabled = true;
-                        document.getElementById(
-                            "darkCatppuccin"
-                        ).disabled = false;
-                    } else {
-                        document.getElementById("dark").disabled = true;
-                        document.getElementById(
-                            "darkCatppuccin"
-                        ).disabled = true;
-                    }
-                }
-                themeSelection.addEventListener("change", (event) => {
-                    const theme = event.target.value;
-                    if (theme === "dark") {
-                        document.getElementById("dark").disabled = false;
-                        document.getElementById(
-                            "darkCatppuccin"
-                        ).disabled = true;
-                    } else if (theme === "dark-catppuccin") {
-                        document.getElementById("dark").disabled = true;
-                        document.getElementById(
-                            "darkCatppuccin"
-                        ).disabled = false;
-                    } else {
-                        document.getElementById("dark").disabled = true;
-                        document.getElementById(
-                            "darkCatppuccin"
-                        ).disabled = true;
-                    }
-                    localStorage.setItem("theme", theme);
-                });
-
-                function showPage(pageId) {
-                    document.querySelectorAll(".page").forEach((page) => {
-                        page.classList.remove("active");
-                    });
-                    document.getElementById(pageId).classList.add("active");
-                    if (pageId === "password-display") {
-                        displayPasswords();
-                    }
-                }
-
-                async function storePassword() {
-                    const username =
-                        await encryptText(document.getElementById("usernameInput").value, localStorage.getItem("masterPasswordPlain"));
-                    const password =
-                        await encryptText(document.getElementById("passwordInput").value, localStorage.getItem("masterPasswordPlain"));
-                    const website =
-                        await encryptText(document.getElementById("websiteInput").value, localStorage.getItem("masterPasswordPlain"));
-                    let passwords =
-                        JSON.parse(localStorage.getItem("passwords")) || [];
-                    passwords.push({ username, password, website });
-                    localStorage.setItem(
-                        "passwords",
-                        JSON.stringify(passwords)
-                    );
-                    alert("Password stored successfully!", "success");
-                    username.value = "";
-                    password.value = "";
-                }
-
-                function generatePassword() {
-                    const length = 12;
-                    const charset =
-                        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[]\\{}|:\";'<>?,./~`";
-                    let password = "";
-                    for (let i = 0; i < length; i++) {
-                        password += charset.charAt(
-                            Math.floor(Math.random() * charset.length)
-                        );
-                    }
-                    document.getElementById("generatedPassword").value =
-                        password;
-                }
-
-                async function displayPasswords() {
-                    const passwords =
-                        JSON.parse(localStorage.getItem("passwords")) || [];
-                    const table = document.getElementById("passwordTable");
-                    table.innerHTML = `<tr><th>Website</th><th>Username</th><th>Password</th><th>Action</th></tr>`;
-                    passwords.forEach(async (entry, index) => {
-                        table.innerHTML += `<tr><td>${await decryptText(entry.website, localStorage.getItem("masterPasswordPlain"))}</td><td>${await decryptText(entry.username, localStorage.getItem("masterPasswordPlain"))}</td><td>${await decryptText(entry.password, localStorage.getItem("masterPasswordPlain"))}</td><td><button onclick="deletePassword(${index})">Delete</button></td></tr>`;
-                    });
-                }
-
-                function deletePassword(index) {
-                    let passwords =
-                        JSON.parse(localStorage.getItem("passwords")) || [];
-                    passwords.splice(index, 1);
-                    localStorage.setItem(
-                        "passwords",
-                        JSON.stringify(passwords)
-                    );
-                    alert("Password deleted successfully!", "success");
+                document.getElementById(pageId).classList.add("active");
+                if (pageId === "password-display") {
                     displayPasswords();
                 }
+            }
 
-                function closePage() {
-                    window.close();
-                }
+            async function storePassword() {
+                const username =
+                    await encryptText(document.getElementById("usernameInput").value, localStorage.getItem("masterPasswordPlain"));
+                const password =
+                    await encryptText(document.getElementById("passwordInput").value, localStorage.getItem("masterPasswordPlain"));
+                const website =
+                    await encryptText(document.getElementById("websiteInput").value, localStorage.getItem("masterPasswordPlain"));
+                let passwords =
+                    JSON.parse(localStorage.getItem("passwords")) || [];
+                passwords.push({ username, password, website });
+                localStorage.setItem(
+                    "passwords",
+                    JSON.stringify(passwords)
+                );
+                alert("Password stored successfully!", "success");
+                username.value = "";
+                password.value = "";
+            }
 
-                function alert(text, icon) {
-                    Toastify({
-                        text: text,
-                        avatar: icon + ".png",
-                        duration: 1750,
-                        close: false,
-                        gravity: "top", // `top` or `bottom`
-                        position: "right", // `left`, `center` or `right`
-                        stopOnFocus: true, // Prevents dismissing of toast on hover
-                        style: {
-                            background: "#313333",
-                        },
-                        onClick: function () {}, // Callback after click
-                    }).showToast();
+            function generatePassword() {
+                const length = 12;
+                const charset =
+                    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[]\\{}|:\";'<>?,./~`";
+                let password = "";
+                for (let i = 0; i < length; i++) {
+                    password += charset.charAt(
+                        Math.floor(Math.random() * charset.length)
+                    );
                 }
-            </script>
-        </div>
-    </body>
+                document.getElementById("generatedPassword").value =
+                    password;
+            }
+
+            async function displayPasswords() {
+                const passwords =
+                    JSON.parse(localStorage.getItem("passwords")) || [];
+                const table = document.getElementById("passwordTable");
+                table.innerHTML = `<tr><th>Website</th><th>Username</th><th>Password</th><th>Action</th></tr>`;
+                passwords.forEach(async (entry, index) => {
+                    table.innerHTML += `<tr><td>${await decryptText(entry.website, localStorage.getItem("masterPasswordPlain"))}</td><td>${await decryptText(entry.username, localStorage.getItem("masterPasswordPlain"))}</td><td>${await decryptText(entry.password, localStorage.getItem("masterPasswordPlain"))}</td><td><button onclick="deletePassword(${index})">Delete</button></td></tr>`;
+                });
+            }
+
+            function deletePassword(index) {
+                let passwords =
+                    JSON.parse(localStorage.getItem("passwords")) || [];
+                passwords.splice(index, 1);
+                localStorage.setItem(
+                    "passwords",
+                    JSON.stringify(passwords)
+                );
+                alert("Password deleted successfully!", "success");
+                displayPasswords();
+            }
+
+            function closePage() {
+                window.close();
+            }
+
+            function alert(text, icon) {
+                Toastify({
+                    text: text,
+                    avatar: icon + ".png",
+                    duration: 1750,
+                    close: false,
+                    gravity: "top", // `top` or `bottom`
+                    position: "right", // `left`, `center` or `right`
+                    stopOnFocus: true, // Prevents dismissing of toast on hover
+                    style: {
+                        background: "#313333",
+                    },
+                    onClick: function () { }, // Callback after click
+                }).showToast();
+            }
+        </script>
+    </div>
+</body>
+
 </html>

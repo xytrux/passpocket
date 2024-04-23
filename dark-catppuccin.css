@@ -25,70 +25,92 @@ _______|_______/__/ ____ \__\__|___\__\__|___\__\____
 html {
     background-color: #1e1e2e !important;
 }
+
 html {
     color-scheme: dark !important;
 }
+
 iframe {
     color-scheme: initial;
 }
-html, body {
+
+html,
+body {
     background-color: #1e1e2e;
 }
-html, body {
+
+html,
+body {
     border-color: #2645ac;
     color: #cdd6f4;
 }
+
 a {
     color: #3391ff;
 }
+
 table {
     border-color: #46466c;
 }
+
 ::placeholder {
     color: #708ae0;
 }
+
 input:-webkit-autofill,
 textarea:-webkit-autofill,
 select:-webkit-autofill {
     background-color: #4d5200 !important;
     color: #cdd6f4 !important;
 }
+
 ::-webkit-scrollbar {
     background-color: #242437;
     color: #6581dd;
 }
+
 ::-webkit-scrollbar-thumb {
     background-color: #3d3d5e;
 }
+
 ::-webkit-scrollbar-thumb:hover {
     background-color: #4a4a71;
 }
+
 ::-webkit-scrollbar-thumb:active {
     background-color: #3d3d5d;
 }
+
 ::-webkit-scrollbar-corner {
     background-color: #1e1e2e;
 }
+
 ::selection {
     background-color: #585b70 !important;
     color: #FFF !important;
 }
+
 ::-moz-selection {
     background-color: #585b70 !important;
     color: #FFF !important;
 }
 
 /* Invert Style */
-.jfk-bubble.gtx-bubble, .captcheck_answer_label > input + img, span#closed_text > img[src^="https://www.gstatic.com/images/branding/googlelogo"], span[data-href^="https://www.hcaptcha.com/"] > #icon, ::-webkit-calendar-picker-indicator, img.Wirisformula {
+.jfk-bubble.gtx-bubble,
+.captcheck_answer_label>input+img,
+span#closed_text>img[src^="https://www.gstatic.com/images/branding/googlelogo"],
+span[data-href^="https://www.hcaptcha.com/"]>#icon,
+::-webkit-calendar-picker-indicator,
+img.Wirisformula {
     filter: invert(100%) hue-rotate(180deg) contrast(90%) !important;
 }
 
 /* Variables Style */
 :root {
-   --darkreader-neutral-background: #181825;
-   --darkreader-neutral-text: #acc9ed;
-   --darkreader-selection-background: #585b70;
-   --darkreader-selection-text: #FFF;
+    --darkreader-neutral-background: #181825;
+    --darkreader-neutral-text: #acc9ed;
+    --darkreader-selection-background: #585b70;
+    --darkreader-selection-text: #FFF;
 }
 
 /* Modified CSS */
@@ -99,6 +121,7 @@ select:-webkit-autofill {
     color: rgb(205, 214, 244);
     text-decoration-color: initial;
 }
+
 .toast-close {
     background-color: initial;
     background-image: initial;
@@ -107,20 +130,25 @@ select:-webkit-autofill {
     border-width: 0px;
     color: rgb(205, 214, 244);
 }
+
 body {
     background-color: rgb(34, 34, 53);
 }
+
 #sidebar {
     background-color: rgb(32, 32, 49);
     color: rgb(205, 214, 244);
 }
+
 #sidebar li a {
     color: rgb(205, 214, 244);
     text-decoration-color: initial;
 }
+
 #sidebar li a:hover {
     background-color: rgb(54, 54, 82);
 }
+
 button {
     background-color: rgb(19, 113, 171);
     border-color: initial;
@@ -128,15 +156,19 @@ button {
     border-width: initial;
     color: rgb(205, 214, 244);
 }
+
 button:hover {
     background-color: rgb(13, 111, 159);
 }
+
 input[type="text"] {
     border-color: rgb(56, 56, 86);
 }
+
 select {
     border-color: rgb(56, 56, 86);
 }
+
 th,
 td {
     border-bottom-color: rgb(49, 68, 86);
@@ -148,29 +180,36 @@ td {
     border-color: #d8b013 !important;
     color: #f3e8c8 !important;
 }
+
 #vimvixen-console-frame {
     color-scheme: light !important;
 }
+
 ::placeholder {
     opacity: 0.5 !important;
 }
+
 #edge-translate-panel-body,
 .MuiTypography-body1,
 .nfe-quote-text {
     color: var(--darkreader-neutral-text) !important;
 }
+
 gr-main-header {
     background-color: #0f3a48 !important;
 }
+
 .tou-z65h9k,
 .tou-mignzq,
 .tou-1b6i2ox,
 .tou-lnqlqk {
     background-color: var(--darkreader-neutral-background) !important;
 }
+
 .tou-75mvi {
     background-color: #032029 !important;
 }
+
 .tou-ta9e87,
 .tou-1w3fhi0,
 .tou-1b8t2us,
@@ -180,70 +219,99 @@ gr-main-header {
 .tou-17ezmgn {
     background-color: #0a0a0a !important;
 }
+
 .tou-uknfeu {
     background-color: #231603 !important;
 }
+
 .tou-6i3zyv {
     background-color: #19576c !important;
 }
+
 div.mermaid-viewer-control-panel .btn {
     background-color: var(--darkreader-neutral-background);
     fill: var(--darkreader-neutral-text);
 }
+
 svg g rect.er {
     fill: var(--darkreader-neutral-background) !important;
 }
+
 svg g rect.er.entityBox {
     fill: var(--darkreader-neutral-background) !important;
 }
+
 svg g rect.er.attributeBoxOdd {
     fill: var(--darkreader-neutral-background) !important;
 }
+
 svg g rect.er.attributeBoxEven {
     fill: var(--darkreader-selection-background);
     fill-opacity: 0.8 !important;
 }
+
 svg rect.er.relationshipLabelBox {
     fill: var(--darkreader-neutral-background) !important;
 }
+
 svg g g.nodes rect,
 svg g g.nodes polygon {
     fill: var(--darkreader-neutral-background) !important;
 }
+
 svg g rect.task {
     fill: var(--darkreader-selection-background) !important;
 }
+
 svg line.messageLine0,
 svg line.messageLine1 {
     stroke: var(--darkreader-neutral-text) !important;
 }
+
 div.mermaid .actor {
     fill: var(--darkreader-neutral-background) !important;
 }
+
 .google-material-icons {
     font-family: 'Google Material Icons' !important;
 }
+
 .google-symbols {
     font-family: 'Google Symbols Subset', 'Google Symbols' !important;
 }
+
 .material-icons-extended {
     font-family: 'Material Icons Extended' !important;
 }
-mitid-authenticators-code-app > .code-app-container {
+
+mitid-authenticators-code-app>.code-app-container {
     background-color: white !important;
     padding-top: 1rem;
 }
+
 iframe#unpaywall[src$="unpaywall.html"] {
     color-scheme: light !important;
 }
+
 .oui-icon {
     font-family: 'Oui Icons' !important;
 }
-embed[type="application/pdf"][src="about:blank"] { filter: invert(100%) contrast(90%); }
-input[type="text"] {
+
+embed[type="application/pdf"][src="about:blank"] {
+    filter: invert(100%) contrast(90%);
+}
+
+input[type="text"],
+input[type="password"] {
     border-color: rgb(83, 90, 132);
     background-color: rgb(83, 90, 132);
 }
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+    color: rgb(229, 233, 255);
+}
+
 select {
     border-color: rgb(83, 90, 132);
     background-color: rgb(83, 90, 132);

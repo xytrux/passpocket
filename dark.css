@@ -25,54 +25,71 @@ _______|_______/__/ ____ \__\__|___\__\__|___\__\____
 html {
     background-color: #181a1b !important;
 }
+
 html {
     color-scheme: dark !important;
 }
+
 iframe {
     color-scheme: initial;
 }
-html, body {
+
+html,
+body {
     background-color: #181a1b;
 }
-html, body {
+
+html,
+body {
     border-color: #736b5e;
     color: #e8e6e3;
 }
+
 a {
     color: #3391ff;
 }
+
 table {
     border-color: #545b5e;
 }
+
 ::placeholder {
     color: #b2aba1;
 }
+
 input:-webkit-autofill,
 textarea:-webkit-autofill,
 select:-webkit-autofill {
     background-color: #404400 !important;
     color: #e8e6e3 !important;
 }
+
 ::-webkit-scrollbar {
     background-color: #202324;
     color: #aba499;
 }
+
 ::-webkit-scrollbar-thumb {
     background-color: #454a4d;
 }
+
 ::-webkit-scrollbar-thumb:hover {
     background-color: #575e62;
 }
+
 ::-webkit-scrollbar-thumb:active {
     background-color: #484e51;
 }
+
 ::-webkit-scrollbar-corner {
     background-color: #181a1b;
 }
+
 ::selection {
     background-color: #004daa !important;
     color: #e8e6e3 !important;
 }
+
 ::-moz-selection {
     background-color: #004daa !important;
     color: #e8e6e3 !important;
@@ -80,10 +97,10 @@ select:-webkit-autofill {
 
 /* Variables Style */
 :root {
-   --darkreader-neutral-background: #131516;
-   --darkreader-neutral-text: #d8d4cf;
-   --darkreader-selection-background: #004daa;
-   --darkreader-selection-text: #e8e6e3;
+    --darkreader-neutral-background: #131516;
+    --darkreader-neutral-text: #d8d4cf;
+    --darkreader-selection-background: #004daa;
+    --darkreader-selection-text: #e8e6e3;
 }
 
 /* Modified CSS */
@@ -94,6 +111,7 @@ select:-webkit-autofill {
     color: rgb(232, 230, 227);
     text-decoration-color: initial;
 }
+
 .toast-close {
     background-color: initial;
     background-image: initial;
@@ -102,20 +120,25 @@ select:-webkit-autofill {
     border-width: 0px;
     color: rgb(232, 230, 227);
 }
+
 body {
     background-color: rgb(30, 33, 34);
 }
+
 #sidebar {
     background-color: rgb(38, 42, 43);
     color: rgb(232, 230, 227);
 }
+
 #sidebar li a {
     color: rgb(232, 230, 227);
     text-decoration-color: initial;
 }
+
 #sidebar li a:hover {
     background-color: rgb(64, 69, 72);
 }
+
 button {
     background-color: rgb(19, 111, 169);
     border-color: initial;
@@ -123,12 +146,21 @@ button {
     border-width: initial;
     color: rgb(232, 230, 227);
 }
+
 button:hover {
     background-color: rgb(13, 107, 154);
 }
+
+input[type="text"],
 input[type="text"] {
     border-color: rgb(67, 72, 75);
 }
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+    color: rgb(178, 171, 161);
+}
+
 th,
 td {
     border-bottom-color: rgb(49, 68, 86);

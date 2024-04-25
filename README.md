@@ -54,8 +54,8 @@ Thanks to Electron and the open-source community for making this project possibl
 - [x] Self hostable server to sync passwords
 - [ ] Serpent-Twofish-AES support
 - [ ] OS integration
-- [ ] Integration with browser extensions (Passlink + PassPocket)
-- [ ] Passkey integration (Passlink + PassPocket)
+- [ ] Integration with browser extensions
+- [ ] Passkey integration
 - [ ] Authenticator
 - [ ] Mobile friendly website + app
 - [ ] Auto sync

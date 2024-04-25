@@ -1,14 +1,1 @@
-{
-  "name": "PassPocket - Password Manager",
-  "short_name": "passman",
-  "description": "A simple, yet powerful password manager.",
-  "start_url": "/index.html",
-  "display": "fullscreen",
-  "background_color": "#000000",
-  "theme_color": "#0f4a73",
-  "icons": [{
-    "src": "icon.png",
-    "sizes": "256x256",
-    "type": "image/png"
-  }]
-}
+{"theme_color":"#389fff","background_color":"#5c727a","icons":[{"purpose":"maskable","sizes":"512x512","src":"icon512_maskable.png","type":"image/png"},{"purpose":"any","sizes":"512x512","src":"icon512_rounded.png","type":"image/png"}],"orientation":"any","display":"standalone","dir":"auto","lang":"en-US","name":"PassPocket","start_url":"https://xytrux.github.io/passpocket/"}

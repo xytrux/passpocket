@@ -3,6 +3,10 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self';"
+        />
         <title>Passpocket - Password Manager</title>
         <link href="data/toastify.css" rel="stylesheet" />
         <link rel="icon" type="image/x-icon" href="data/favicon.ico" />
@@ -111,6 +115,10 @@
                         </option>
                     </optgroup>
                 </select>
+                <!-- warning thing for encryption -->
+                <p id="encryptionWarning">
+                    <strong>Warning:</strong> If you save your passwords with a different encryption type, you will not be able to access them.
+                </p>
             </div>
 
             <div id="password-generator" class="page">

@@ -1,4 +1,5 @@
 let countdown;
+let encryptionType = "AES-GCM";
 
 function generateSecret() {
     const array = new Uint8Array(10);
@@ -81,7 +82,7 @@ async function encryptText(text, password) {
     const cryptoKey = await crypto.subtle.importKey(
         "raw",
         key,
-        { name: "AES-GCM" },
+        { name: encryptionType },
         false,
         ["encrypt"]
     );
@@ -90,7 +91,7 @@ async function encryptText(text, password) {
 
     const encryptedData = await crypto.subtle.encrypt(
         {
-            name: "AES-GCM",
+            name: encryptionType,
             iv: iv,
         },
         cryptoKey,
@@ -110,7 +111,7 @@ async function encryptText(text, password) {
     return encryptedString;
 }
 
-async function decryptText(encryptedString, password) {
+async function decryptText(encryptedString, password, encryptionType) {
     const decoder = new TextDecoder();
 
     // Decode Base64 string to bytes
@@ -148,7 +149,7 @@ async function decryptText(encryptedString, password) {
     const cryptoKey = await crypto.subtle.importKey(
         "raw",
         key,
-        { name: "AES-GCM" },
+        { name: encryptionType },
         false,
         ["decrypt"]
     );
@@ -156,7 +157,7 @@ async function decryptText(encryptedString, password) {
     // Decrypt data
     const decryptedData = await crypto.subtle.decrypt(
         {
-            name: "AES-GCM",
+            name: encryptionType,
             iv: iv,
         },
         cryptoKey,
@@ -199,9 +200,15 @@ function deleteData() {
     localStorage.removeItem("masterPassword");
     localStorage.removeItem("passwords");
     alert("Data deleted successfully!", "success");
-    setTimeout(() => {
-        location.reload();
-    }, 1500);
+    showPage("masterpassword-set");
+    document.getElementById("loginSidebar").classList.add("hidden");
+    document.getElementById("setPasswordSidebar").classList.remove("hidden");
+    document.getElementById("passwordEntrySidebar").classList.add("hidden");
+    document.getElementById("passwordGeneratorSidebar").classList.add("hidden");
+    document.getElementById("passwordDisplaySidebar").classList.add("hidden");
+    document.getElementById("AuthenticatorSidebar").classList.add("hidden");
+    document.getElementById("spacerSidebar").classList.add("hidden");
+    document.getElementById("logoutSidebar").classList.add("hidden");
 }
 // only show register page if master password is not set
 if (localStorage.getItem("masterPasswordPlain")) {
@@ -242,8 +249,8 @@ async function login() {
             .classList.remove("hidden");
         /*
         document
-            .getElementById("AuthenticatorSidebar")
-            .classList.remove("hidden");
+            .getElementById('AuthenticatorSidebar')
+            .classList.remove('hidden');
             */
         document.getElementById("spacerSidebar").classList.remove("hidden");
         document.getElementById("logoutSidebar").classList.remove("hidden");
@@ -268,11 +275,9 @@ function logout() {
 let userAgent = navigator.userAgent.toLowerCase();
 if (userAgent.indexOf(" electron/") > -1) {
     document.getElementById("s-t-aes").disabled = false;
-} else {
-    document.getElementById("s-t-aes").disabled = false;
 }
 
-// const darkReader = require("darkreader");
+// const darkReader = require('darkreader');
 /*
 DarkReader.auto({
 brightness: 100,
@@ -322,6 +327,11 @@ function showPage(pageId) {
     }
 }
 
+const encryptionTypeSelection = document.getElementById("encryptionType");
+encryptionTypeSelection.addEventListener("change", (event) => {
+    encryptionType = event.target.value;
+});
+
 async function storePassword() {
     const username = await encryptText(
         document.getElementById("usernameInput").value,
@@ -336,7 +346,7 @@ async function storePassword() {
         localStorage.getItem("masterPasswordPlain")
     );
     let passwords = JSON.parse(localStorage.getItem("passwords")) || [];
-    passwords.push({ username, password, website });
+    passwords.push({ username, password, website, encryptionType });
     localStorage.setItem("passwords", JSON.stringify(passwords));
     alert("Password stored successfully!", "success");
     username.value = "";
@@ -346,7 +356,7 @@ async function storePassword() {
 function generatePassword() {
     const length = 12;
     const charset =
-        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[]\\{}|:\";'<>?,./~`";
+        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[]\\{}|:';\"<>?,./~`";
     let password = "";
     for (let i = 0; i < length; i++) {
         password += charset.charAt(Math.floor(Math.random() * charset.length));
@@ -361,14 +371,17 @@ async function displayPasswords() {
     passwords.forEach(async (entry, index) => {
         table.innerHTML += `<tr><td>${await decryptText(
             entry.website,
-            localStorage.getItem("masterPasswordPlain")
+            localStorage.getItem("masterPasswordPlain"),
+            entry.encryptionType
         )}</td><td>${await decryptText(
             entry.username,
-            localStorage.getItem("masterPasswordPlain")
+            localStorage.getItem("masterPasswordPlain"),
+            entry.encryptionType
         )}</td><td>${await decryptText(
             entry.password,
-            localStorage.getItem("masterPasswordPlain")
-        )}</td><td><button onclick="deletePassword(${index})">Delete</button></td></tr>`;
+            localStorage.getItem("masterPasswordPlain"),
+            entry.encryptionType
+        )}</td><td><button onclick='deletePassword(${index})'>Delete</button></td></tr>`;
     });
 }
 

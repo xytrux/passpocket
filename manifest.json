@@ -4,6 +4,8 @@
   "description": "A simple, yet powerful password manager.",
   "start_url": "/index.html",
   "display": "fullscreen",
+  "background_color": "#000000",
+  "theme_color": "#0f4a73",
   "icons": [{
     "src": "icon.png",
     "sizes": "256x256",

@@ -1,9 +1,0 @@
-- [x] Better encryption
-- [x] Self hostable server to sync passwords
-- [ ] Serpent-Twofish-AES support
-- [ ] OS integration
-- [ ] Integration with browser extensions (Passlink + PassPocket)
-- [ ] Passkey integration (Passlink + PassPocket)
-- [ ] Authenticator
-- [ ] Mobile friendly website + app
-- [ ] Auto sync

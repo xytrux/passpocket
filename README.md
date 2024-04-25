@@ -48,3 +48,8 @@ For any inquiries, you can reach out to any of these contacts:
 ## Acknowledgments
 
 Thanks to Electron and the open-source community for making this project possible.
+
+## Screenshots
+![](https://raw.githubusercontent.com/xytrux/passpocket/main/screenshots/NVIDIA_Share_67tMWTY4de.png)
+
+![](https://raw.githubusercontent.com/xytrux/passpocket/main/screenshots/NVIDIA_Share_9XXBRdjv93.png)

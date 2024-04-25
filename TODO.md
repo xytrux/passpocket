@@ -1,0 +1,8 @@
+- ~~Better encryption~~ Needs S-T-AES
+- OS integration
+- ~~Self hostable server to sync passwords~~
+- Integration with browser extensions (Passlink + PassPocket)
+- Passkey integration (Passlink + PassPocket)
+- Authenticator
+- Mobile friendly website + app
+- Auto sync

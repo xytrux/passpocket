@@ -49,6 +49,17 @@ For any inquiries, you can reach out to any of these contacts:
 
 Thanks to Electron and the open-source community for making this project possible.
 
+## To Do
+- [x] Better encryption
+- [x] Self hostable server to sync passwords
+- [ ] Serpent-Twofish-AES support
+- [ ] OS integration
+- [ ] Integration with browser extensions (Passlink + PassPocket)
+- [ ] Passkey integration (Passlink + PassPocket)
+- [ ] Authenticator
+- [ ] Mobile friendly website + app
+- [ ] Auto sync
+
 ## Screenshots
 ![](https://raw.githubusercontent.com/xytrux/passpocket/main/screenshots/NVIDIA_Share_67tMWTY4de.png)
 

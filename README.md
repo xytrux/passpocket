@@ -28,9 +28,9 @@ For detailed instructions, see [INSTALL.md](INSTALL.md).
 
 ## Authors
 
-- [Xytrux](https://github.com/Xytrux) - Initial work
-- [CallenDV](https://github.com/CallenDV) - Web version
 - [ClaytonTDM](https://github.com/ClaytonTDM) - Initial work
+- [xytrux](https://github.com/xytrux) - Project starter/maintainer
+- [CallenDV](https://github.com/CallenDV) - Web version
 - [wecannotdecide](https://github.com/wecannotdecide) - MacOS Testing/building
 
 ## License

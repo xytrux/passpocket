@@ -18,7 +18,8 @@ PassPocket is a simple, yet powerful password manager.
 - Secure password storage
 - Easy-to-use interface
 - Dark mode
-- No online account system needed
+- No online account system
+- Syncing passwords between devices
 
 ## Quick Start
  Download one of the files in the [releases](https://github.com/xytrux/passpocket/releases) page!

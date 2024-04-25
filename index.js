@@ -10,20 +10,13 @@ function createWindow() {
         webPreferences: {
             preload: path.join(__dirname, "preload.js"),
             devTools: true,
+            nodeIntegration: true,
         },
-    });
-
-    ipcMain.on("setEncryptionType", (event, value) => {
-        console.log(value + " set!");
-        // Do whatever you want with the value in the main process
     });
 
     win.loadFile("index.html");
 }
-app.commandLine.appendSwitch(
-    "--enable-features",
-    /*'FluentOverlayScrollbar'*/ "OverlayScrollbar"
-);
+app.commandLine.appendSwitch("--enable-features", "FluentScrollbar");
 
 app.whenReady().then(() => {
     createWindow();

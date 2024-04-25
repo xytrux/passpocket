@@ -104,3 +104,7 @@ hr {
 .hidden {
     display: none;
 }
+
+progress {
+    margin-left: 10px;
+}

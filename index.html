@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
             http-equiv="Content-Security-Policy"
-            content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self';"
+            content="default-src 'self' http://localhost:58585; script-src 'self' 'unsafe-inline'; style-src 'self';"
         />
         <title>Passpocket - Password Manager</title>
         <link href="data/toastify.css" rel="stylesheet" />
@@ -55,8 +55,12 @@
                     <a href="#" onclick="showPage('authenticator')"
                         >Authenticator</a
                     >
-                    <hr class="hidden" id="spacerSidebar" />
                 </li>
+                <li class="hidden" id="syncSidebar">
+                    <a href="#" onclick="showPage('sync')">Sync</a>
+                </li>
+
+                <hr class="hidden" id="spacerSidebar" />
 
                 <li id="optionsSidebar">
                     <a href="#" onclick="showPage('options')">Options</a>
@@ -102,8 +106,12 @@
                 <select name="encryptionType" id="encryptionType">
                     <optgroup label="Web + App">
                         <option value="AES-GCM">AES-GCM</option>
-                        <option value="AES-CBC">AES-CBC</option>
-                        <option value="AES-ECB">AES-CTR</option>
+                        <option value="AES-CBC" disabled>
+                            AES-CBC (Not yet available)
+                        </option>
+                        <option value="AES-ECB" disabled>
+                            AES-CTR (Not yet available)
+                        </option>
                     </optgroup>
                     <optgroup label="App Only">
                         <option
@@ -111,7 +119,8 @@
                             id="s-t-aes"
                             disabled
                         >
-                            Serpent-Twofish-AES <strong>(Recommended)</strong>
+                            Serpent-Twofish-AES<!-- (Recommended)-->
+                            (Not yet available)
                         </option>
                     </optgroup>
                 </select>
@@ -172,6 +181,31 @@
                 <button onclick="setMasterPassword()">
                     Set Master Password
                 </button>
+            </div>
+
+            <div id="sync" class="page">
+                <h2>Sync</h2>
+                <!-- sync button get get ready for syncing to a device, when you click it it starts a 2m countdown -->
+                <button onclick="sync()">Sync to another PC</button>
+                <progress
+                    id="syncProgress"
+                    value="0"
+                    max="120"
+                    class="hidden"
+                ></progress>
+                <p id="syncTimer"></p>
+                <hr>
+                <button
+                    onclick="syncFromDevice(document.getElementById('syncPasswordInput').value)"
+                >
+                    Sync from another PC
+                </button>
+                <br /><br />
+                <input
+                    type="password"
+                    id="syncPasswordInput"
+                    placeholder="Enter sync password"
+                />
             </div>
             <script src="data/browser.js"></script>
         </div>

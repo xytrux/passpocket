@@ -53,3 +53,11 @@ Thanks to Electron and the open-source community for making this project possibl
 ![](https://raw.githubusercontent.com/xytrux/passpocket/main/screenshots/NVIDIA_Share_67tMWTY4de.png)
 
 ![](https://raw.githubusercontent.com/xytrux/passpocket/main/screenshots/NVIDIA_Share_9XXBRdjv93.png)
+
+![](https://raw.githubusercontent.com/xytrux/passpocket/main/screenshots/NVIDIA_Share_JhPvxxah5B-1.png)
+
+![](https://raw.githubusercontent.com/xytrux/passpocket/main/screenshots/NVIDIA_Share_L4VkmdlEm6.png)
+
+![](https://raw.githubusercontent.com/xytrux/passpocket/main/screenshots/NVIDIA_Share_W59kcZ5uW3.png)
+
+![](https://raw.githubusercontent.com/xytrux/passpocket/main/screenshots/NVIDIA_Share_fo07cLfs7u.png)

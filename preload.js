@@ -1,24 +1,13 @@
 const express = require('express');
-const cors = require('cors');
 const crypto = require('crypto');
 const app = express();
+const bonjour = require("bonjour")();
+const Chance = require("chance");
+let chance = new Chance();
 let port = 58585;
 
 let encryptedData;
 let dataTimeout;
-
-// Set up CORS
-const corsOptions = {
-    origin: function (origin, callback) {
-        // Allow requests with no origin (like mobile apps or curl requests)
-        if (!origin) return callback(null, true);
-        if (origin.startsWith('http://localhost') || origin === 'null') {
-            return callback(null, true);
-        } else {
-            return callback(new Error('Not allowed by CORS'));
-        }
-    }
-};
 
 // SHA256
 async function sha256(message) {
@@ -37,8 +26,6 @@ async function sha256(message) {
         .join("");
     return hashHex;
 }
-
-app.use(cors(corsOptions));
 
 // Parse JSON bodies
 app.use(express.json());

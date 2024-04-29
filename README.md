@@ -5,6 +5,8 @@ The people working on this would argue with me every day for stupid reasons. Whe
 
 The project was doomed since the everyday arguments have started. It's been a good run.
 
+------------------------------------------------
+
 <p align="center">
   <img src="icon.png" alt="PassPocket Logo" width="200">
 </p>

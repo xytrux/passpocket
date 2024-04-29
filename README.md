@@ -1,3 +1,10 @@
+# R.I.P PassPocket - Doomed by everyday useless arguments
+Due to a stupid argument, I have decided that I do not want to work with the people I worked on this project.
+
+The people working on this would argue with me every day for stupid reasons. Whether it was because of my opinion on Apple or because I am "sensitive" and "narcisstic" I do not know, point is, I'm done with their shit. This has been going on for months and I will no longer work with these useless fucks. I'm sick, and fed up with their shit. They have made a fork but I suggest you don't star it. These people are assholes and I am NOT dealing with them no more.
+
+The project was doomed since the everyday arguments have started. It's been a good run.
+
 <p align="center">
   <img src="icon.png" alt="PassPocket Logo" width="200">
 </p>

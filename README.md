@@ -28,7 +28,7 @@ For detailed instructions, see [INSTALL.md](INSTALL.md).
 ## Authors
 
 - [ClaytonTDM](https://github.com/ClaytonTDM) - Initial work
-- [xytrux](https://github.com/xytrux) - Project starter/maintainer
+- [xytrux](https://github.com/xytrux) - Project creator
 - [CallenDV](https://github.com/CallenDV) - Web version
 - [wecannotdecide](https://github.com/wecannotdecide) - MacOS Testing/building
 
@@ -39,18 +39,16 @@ This project is licensed under the MIT License.
 ## Contact
 
 For any inquiries, you can reach out to any of these contacts:
-- Email: [`helloworldpy103@gmail.com`](mailto:helloworldpy103@gmail.com)
 - Email: [`claytontdm@gmail.com`](mailto:claytontdm@gmail.com)
 - Matrix/Beeper: `@claytontdm:beeper.com` **(Recommended)**
-- Matrix/Beeper: `@saiplayz1138:beeper.com`
 
 ## Acknowledgments
 
 Thanks to Electron and the open-source community for making this project possible.
 
 ## To Do
-- [x] Better encryption
-- [x] Self hostable server to sync passwords
+- [x] Encryption
+- [x] Self hostable server to sync passwords (Local only atm)
 - [ ] Serpent-Twofish-AES support
 - [ ] OS integration
 - [ ] Integration with browser extensions

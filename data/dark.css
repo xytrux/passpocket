@@ -144,3 +144,36 @@ th,
 td {
     border-bottom-color: rgb(49, 68, 86);
 }
+
+.loadingCircle,
+.img-os {
+    filter: brightness(0) invert(1);
+}
+
+.select2-container--default .select2-selection--single {
+    border-color: #545b5e !important;
+    background-color: #545b5e !important;
+}
+
+.select2-results__options,
+.select2-search--dropdown {
+    background-color: #1e2122 !important;
+}
+
+.select2-search__field {
+    background-color: #1e2122 !important;
+    border-radius: 3px;
+    border-color: #545b5e !important;
+}
+
+.select2-results__option--highlighted {
+    background-color: #404548 !important;
+}
+
+.select2-selection__rendered {
+    color: #e8e6e3 !important;
+}
+
+.select2-dropdown--below {
+    border-color: #131516 !important;
+}

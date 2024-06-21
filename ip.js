@@ -1,3 +1,4 @@
+const os = require("os");
 const express = require("express");
 const bonjour = require("bonjour")();
 const Chance = require("chance");
@@ -15,6 +16,8 @@ const osTable = {
     win32: "Windows",
     android: "Android",
 };
+
+const computerName = os.hostname()
 
 const app = express();
 const port = 58585;
@@ -37,6 +40,7 @@ app.listen(port, () => {
         host: `${random}-passpocket.local`,
         txt: {
             os: osTable[operatingSystem],
+            computerName: computerName
         },
     });
 

@@ -78,7 +78,7 @@ input[type="password"] {
     border: 1px solid #adc6cc;
 }
 
-select {
+select:not(.select2) {
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
@@ -107,4 +107,32 @@ hr {
 
 progress {
     margin-left: 10px;
+}
+
+.img-os:not([src="data/os/0.png"]) {
+    width: 16px;
+    margin-bottom: -2.5px;
+}
+
+.selection, .select2-selection {
+    padding: 10px;
+    height: 36px !important;
+}
+
+.select2-selection__arrow {
+    margin-top: 22px;
+}
+
+.select2-selection__rendered {
+    margin-top: -6px;
+    padding-left: 0 !important;
+    font-size: 14px; /* calc(30px/2.25); */
+}
+
+.select2-dropdown--below {
+    margin-top: -18px;
+}
+
+.select2-container {
+    margin-bottom: -36px !important;
 }

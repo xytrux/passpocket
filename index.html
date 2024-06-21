@@ -3,11 +3,12 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta
+        <!--<meta
             http-equiv="Content-Security-Policy"
             content="default-src 'self' http://localhost:58585; script-src 'self' 'unsafe-inline'; style-src 'self';"
-        />
+        />-->
         <title>Passpocket - Password Manager</title>
+        <!--<link href="data/select2.css" rel="stylesheet" disabled />-->
         <link href="data/toastify.css" rel="stylesheet" />
         <link rel="icon" type="image/x-icon" href="data/favicon.ico" />
         <link href="data/base.css" rel="stylesheet" />
@@ -18,12 +19,12 @@
             id="darkCatppuccin"
             disabled
         />
+        <script src="data/jquery.js"></script>
+        <link href="data/select2.css" rel="stylesheet" />
+        <script src="data/select2.js"></script>
     </head>
 
     <body>
-        <script src="data/toastify.js"></script>
-        <script src="data/optlib-buffer.js"></script>
-        <script src="data/optlib-index.js"></script>
         <div id="sidebar">
             <ul>
                 <li id="setPasswordSidebar">
@@ -193,20 +194,53 @@
                     max="120"
                     class="hidden"
                 ></progress>
-                <p id="syncTimer"></p>
-                <hr>
-                <button
-                    onclick="syncFromDevice(document.getElementById('syncPasswordInput').value)"
-                >
+                <p id="syncTimer" class="hidden"></p>
+                <button onclick="getReadyToSync()" id="syncFrom">
                     Sync from another PC
                 </button>
+                <p
+                    id="syncSearchLoader"
+                    class="hidden"
+                    style="margin-bottom: -10px"
+                >
+                    <img
+                        src="data/loading.svg"
+                        style="width: calc(30px / 2.25)"
+                        class="loadingCircle"
+                    />
+                    Searching...
+                </p>
+                <div id="syncDeviceSelectDiv" class="hidden">
+                    <select
+                        id="syncDeviceSelect"
+                        class="select2"
+                        name="devices[]"
+                        style="width: 100%"
+                    >
+                        <option data-os="0" value="0" selected disabled>
+                            Select a device
+                        </option>
+                        <option data-os="Windows" value="DESKTOP=JNDJSN">
+                            DESKTOP-JNDJSN
+                        </option>
+                        <option data-os="AIX" value="aixserver">
+                            aixserver
+                        </option>
+                        <option data-os="Linux" value="HomeNas">HomeNas</option>
+                    </select>
+                </div>
                 <br /><br />
                 <input
                     type="password"
                     id="syncPasswordInput"
                     placeholder="Enter sync password"
+                    class="hidden"
                 />
             </div>
+            <script src="data/toastify.js"></script>
+            <script src="data/optlib-buffer.js"></script>
+            <script src="data/optlib-index.js"></script>
+            <!--<script src="data/select2.js"></script>-->
             <script src="data/browser.js"></script>
         </div>
     </body>

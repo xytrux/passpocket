@@ -295,3 +295,40 @@ select {
     border-color: rgb(83, 90, 132);
     background-color: rgb(83, 90, 132);
 }
+
+.loadingCircle,
+.img-os {
+    filter: brightness(0) invert(1);
+}
+
+.select2-container--default .select2-selection--single {
+    border-color: rgb(83, 90, 132) !important;
+    background-color: rgb(83, 90, 132) !important;
+}
+
+.select2-results__options,
+.select2-search--dropdown {
+    background-color: rgb(43, 43, 65) !important;
+}
+
+.select2-search__field {
+    background-color: rgb(34, 34, 53) !important;
+    border-radius: 3px;
+    border-color: rgb(83, 90, 132) !important;
+}
+
+.select2-results__option--highlighted {
+    background-color: rgb(54, 54, 82) !important;
+}
+
+.select2-selection__rendered {
+    color: rgb(229, 233, 255) !important;
+}
+
+.select2-dropdown--below {
+    border-color: rgb(32, 32, 49) !important;
+}
+
+.select2-container--default .select2-results__option--selected {
+    background-color: rgb(34, 34, 53) !important;
+}

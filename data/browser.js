@@ -290,7 +290,7 @@ function logout(showAlert = true) {
     document.getElementById("logoutSidebar").classList.add("hidden");
 }
 let userAgent = navigator.userAgent.toLowerCase();
-if (!userAgent.indexOf(" electron/") > -1) {
+if (userAgent.indexOf(" electron/") > -1) {
     isElectron = true;
     // document.getElementById('s-t-aes').disabled = false;
     document.getElementById("syncSidebar").classList.remove("hidden");

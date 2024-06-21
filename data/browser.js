@@ -1,4 +1,5 @@
 let countdown;
+let searchInterval;
 let encryptionType = "AES-GCM";
 let isElectron = false;
 
@@ -369,19 +370,19 @@ async function registerDataForSync() {
     let data = await response.json();
     console.log(data);
     fetch(`http://localhost:58585/startBonjour`)
-    .then((response) => response.text())
-    .then((data) => {
-        // alert("Sync started.", "success");
-    })
-    .catch((error) => {
-        console.error("Error:", error);
-        alert("Failed to start sync", "failure");
-    });
+        .then((response) => response.text())
+        .then((data) => {
+            // alert("Sync started.", "success");
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+            alert("Failed to start sync", "failure");
+        });
 }
 
 function sync() {
     registerDataForSync();
-    let timeLeft = 120;
+    let timeLeft = 241;
     document.getElementById("syncTimer").classList.remove("hidden");
     document.querySelector("#syncFrom").classList.add("hidden");
     document.getElementById("syncTimer").innerText = `Expiring in ${formatTime(
@@ -400,7 +401,16 @@ function sync() {
                     document
                         .getElementById("syncProgress")
                         .classList.add("hidden");
-                    registerDataForSync();
+                    fetch(`http://localhost:58585/stopBonjour`)
+                        .then((response) => response.text())
+                        .then((data) => {
+                            alert("Sync stopped.", "success");
+                        })
+                        .catch((error) => {
+                            console.error("Error:", error);
+                            alert("Failed to start sync", "failure");
+                        });
+                    // registerDataForSync();
                 } else {
                     timeLeft--;
                     document.getElementById(
@@ -411,28 +421,66 @@ function sync() {
                         formatTime(timeLeft);
                     if (timeLeft <= 0) {
                         clearInterval(countdown);
-                        document.getElementById("syncTimer").innerText =
-                            "Expired";
+                        document
+                            .getElementById("syncTimer")
+                            .classList.add("hidden");
                         document
                             .getElementById("syncProgress")
                             .classList.add("hidden");
-                        registerDataForSync();
+                        document
+                            .getElementById("syncFrom")
+                            .classList.remove("hidden");
+                        fetch(`http://localhost:58585/stopBonjour`)
+                            .then((response) => response.text())
+                            .then((data) => {
+                                alert("Sync stopped.", "success");
+                            })
+                            .catch((error) => {
+                                console.error("Error:", error);
+                                alert("Failed to start sync", "failure");
+                            });
+                        // registerDataForSync();
                     }
                 }
             })
             .catch((error) => console.error("Error:", error));
-    }, 1000);
+    }, 500);
 }
 
 function formatTime(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
+    const halfSeconds = seconds / 2;
+    const minutes = Math.floor(halfSeconds / 60);
+    const remainingSeconds = Math.floor(halfSeconds % 60);
     return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
 }
 
-function syncFromDevice(password) {
+let continueSync = false;
+function syncFromDevice(password, host) {
+    // fetch /ping from the device first
+    document.getElementById("startSync").textContent = "Syncing...";
+    fetch(`http://${host}:58585/ping`)
+        .then((response) => response.text())
+        .then((data) => {
+            if (data !== "1") {
+                continueSync = false;
+                alert("Couldnt reach device", "failure");
+                document.getElementById("startSync").textContent = "Sync";
+                return;
+            } else {
+                continueSync = true;
+            }
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+            continueSync = false;
+            alert("Couldnt reach device", "failure");
+            document.getElementById("startSync").textContent = "Sync";
+        });
+    if (!continueSync) {
+        return;
+    }
     // fetch data
-    fetch(`http://localhost:58585/getData?password=${password}`)
+    fetch(`http://${host}:58585/getData?password=${password}`)
         .then((response) => response.json())
         .then((data) => {
             if (data === -1) {
@@ -461,12 +509,13 @@ function syncFromDevice(password) {
             document.getElementById("syncProgress").classList.add("hidden");
             document.getElementById("syncPasswordInput").value = password;
             document.getElementById("masterPasswordInput").value = password;
+            document.getElementById("startSync").textContent = "Sync";
             // login();
         })
         .catch((error) => {
             console.error("Error:", error);
             alert("Failed to sync", "failure");
-            deleteData(true, false, false); // set to false in production
+            deleteData(false, false, false); // set to false in production
         });
 }
 
@@ -567,11 +616,31 @@ function alert(text, icon) {
 }
 
 function getReadyToSync() {
-    // $('#syncDeviceSelect').select2();
     document.querySelector("#syncDeviceSelectDiv").classList.remove("hidden");
     document.querySelector("#syncSearchLoader").classList.remove("hidden");
-    // syncFromDevice(document.getElementById('syncPasswordInput').value);
 }
+
+function stopLooking() {
+    clearInterval(searchInterval);
+    document.querySelector("#syncDeviceSelectDiv").classList.add("hidden");
+    document.querySelector("#syncSearchLoader").classList.add("hidden");
+    document.querySelector("#syncPasswordInput").classList.add("hidden");
+    document.querySelector("#startSync").classList.add("hidden");
+}
+
+// run stopLooking() when #sync loses the .active class
+const syncTab = document.getElementById("sync");
+const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+        if (mutation.attributeName === "class") {
+            if (!syncTab.classList.contains("active")) {
+                stopLooking();
+            }
+        }
+    });
+});
+
+observer.observe(syncTab, { attributes: true });
 
 function formatOS(os) {
     if (!os.id) {
@@ -590,9 +659,48 @@ function formatOS(os) {
     return $os;
 }
 
-$(document).ready(function () {
+let ranRefresh = false;
+let selectOpenedBeforeRefresh = false;
+function refreshDropdown() {
+    if (ranRefresh) {
+        selectOpenedBeforeRefresh = $("#syncDeviceSelect")
+            .data("select2")
+            .isOpen();
+    }
     $("#syncDeviceSelect").select2({
         width: "resolve",
         templateResult: formatOS,
     });
+    ranRefresh = true;
+    if (ranRefresh) {
+        if (selectOpenedBeforeRefresh) {
+            $("#syncDeviceSelect").select2("open");
+        }
+    }
+}
+
+$("#syncDeviceSelect").on("select2:selecting", function (e) {
+    // console.log("changed");
+    setTimeout(() => {
+        if (
+            document.querySelector("#syncDeviceSelect").selectedIndex !== -1 &&
+            document.querySelector("#syncDeviceSelect").selectedOptions[0]
+                .text !== "None"
+        ) {
+            document
+                .querySelector("#syncPasswordInput")
+                .classList.remove("hidden");
+            document.querySelector("#syncPasswordInput").focus();
+            document.querySelector("#startSync").classList.remove("hidden");
+        } else {
+            document
+                .querySelector("#syncPasswordInput")
+                .classList.add("hidden");
+            document.querySelector("#startSync").classList.add("hidden");
+        }
+    }, 1);
+});
+
+$(document).ready(function () {
+    refreshDropdown();
 });

@@ -191,7 +191,7 @@
                 <progress
                     id="syncProgress"
                     value="0"
-                    max="120"
+                    max="241"
                     class="hidden"
                 ></progress>
                 <p id="syncTimer" class="hidden"></p>
@@ -216,17 +216,9 @@
                         class="select2"
                         name="devices[]"
                         style="width: 100%"
+                        data-placeholder="Select a device to sync with..."
                     >
-                        <option data-os="0" value="0" selected disabled>
-                            Select a device
-                        </option>
-                        <option data-os="Windows" value="DESKTOP=JNDJSN">
-                            DESKTOP-JNDJSN
-                        </option>
-                        <option data-os="AIX" value="aixserver">
-                            aixserver
-                        </option>
-                        <option data-os="Linux" value="HomeNas">HomeNas</option>
+                        <option data-os="0">None</option>
                     </select>
                 </div>
                 <br /><br />
@@ -236,6 +228,8 @@
                     placeholder="Enter sync password"
                     class="hidden"
                 />
+                <button class="hidden" onclick="syncFromDevice(document.querySelector('#syncPasswordInput').value,document.querySelector('#syncDeviceSelect').selectedOptions[0].value);" id="startSync">Sync</button>
+                <button class="hidden" onclick="refreshDropdown()" id="refreshDropdown">Refresh Dropdown (DEBUG)</button>
             </div>
             <script src="data/toastify.js"></script>
             <script src="data/optlib-buffer.js"></script>

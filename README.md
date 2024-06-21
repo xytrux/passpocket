@@ -50,7 +50,7 @@ Thanks to Electron and the open-source community for making this project possibl
 
 ## To Do
 - [x] Encryption
-- [x] Self hostable server to sync passwords (Local only atm)
+- [x] Syncing between devices **(beta)**
 - [ ] Serpent-Twofish-AES support
 - [ ] OS integration
 - [ ] Integration with browser extensions

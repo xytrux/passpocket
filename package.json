@@ -72,11 +72,11 @@
   "license": "MIT",
   "devDependencies": {
     "@electron/get": "^3.0.0",
-    "@electron/packager": "^18.3.2",
-    "debug": "^4.3.4",
-    "electron": "^30.0.1",
+    "@electron/packager": "^18.3.3",
+    "debug": "^4.3.5",
+    "electron": "^30.1.2",
     "electron-builder": "^24.13.3",
-    "electron-winstaller": "^5.3.0"
+    "electron-winstaller": "^5.3.1"
   },
   "dependencies": {
     "@otplib/preset-browser": "^12.0.1",

@@ -83,6 +83,42 @@ app.get('/isDataClaimed', (req, res) => {
     res.send(encryptedData ? '0' : '1');
 });
 
+app.get('/startBonjour', (req, res) => {
+    const operatingSystem = process.platform;
+    const osTable = {
+        aix: "AIX",
+        darwin: "macOS",
+        freebsd: "FreeBSD",
+        linux: "Linux",
+        openbsd: "OpenBSD",
+        sunos: "Solaris",
+        win32: "Windows",
+        android: "Android",
+    };
+    const random = chance.string({
+        length: 15,
+        alpha: true,
+        numeric: true,
+        casing: "lower",
+    });
+    bonjour.publish({
+        name: "Passpocket Sync Server",
+        type: "http",
+        port: port,
+        host: `${random}-passpocket.local`,
+        txt: {
+            os: osTable[operatingSystem],
+        },
+    });
+    res.send('1');
+});
+
+app.get('/stopBonjour', (req, res) => {
+    bonjour.unpublishAll(() => {
+        res.send('1');
+    });
+});
+
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });

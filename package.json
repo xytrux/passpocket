@@ -12,7 +12,7 @@
     "dist": "electron-builder"
   },
   "build": {
-    "appId": "com.forjed.passpocket",
+    "appId": "com.xytrux.passpocket",
     "productName": "PassPocket",
     "directories": {
       "output": "dist"

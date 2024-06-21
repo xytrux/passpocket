@@ -456,9 +456,9 @@ function formatTime(seconds) {
 
 let continueSync = false;
 function syncFromDevice(password, host) {
-    // fetch /ping from the device first
+    // fetch /online from the device first
     document.getElementById("startSync").textContent = "Syncing...";
-    fetch(`http://${host}:58585/ping`)
+    fetch(`http://${host}:58585/online`)
         .then((response) => response.text())
         .then((data) => {
             if (data !== "1") {

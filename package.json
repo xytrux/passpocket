@@ -35,7 +35,6 @@
           "target": "AppImage",
           "arch": [
             "x64",
-            "ia32",
             "arm64",
             "armv7l"
           ]
@@ -44,7 +43,6 @@
           "target": "deb",
           "arch": [
             "x64",
-            "ia32",
             "arm64",
             "armv7l"
           ]
@@ -53,7 +51,6 @@
           "target": "rpm",
           "arch": [
             "x64",
-            "ia32",
             "arm64",
             "armv7l"
           ]

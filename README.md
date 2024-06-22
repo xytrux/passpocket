@@ -24,7 +24,7 @@ PassPocket is a simple, yet powerful password manager.
 
 Download one of the files in the [releases](https://github.com/xytrux/passpocket/releases) page!
 
-For detailed instructions, see [INSTALL.md](INSTALL.md).
+For detailed instructions, see [INSTALL.md](doc/INSTALL.md).
 
 ## Authors
 

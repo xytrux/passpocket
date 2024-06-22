@@ -30,7 +30,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm ci
-      - run: npm run dist --if-present
+      - run: npm run release --if-present
       # - name: Zip dist folder
       #   if: success()
       #   run: zip -r dist.zip dist
@@ -61,7 +61,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm ci
-      - run: npm run dist --if-present
+      - run: npm run release --if-present
       # - name: Zip dist folder
       #   if: success()
       #   run: zip -r dist.zip dist
@@ -92,7 +92,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm ci
-      - run: npm run dist --if-present
+      - run: npm run release --if-present
       # - name: Zip dist folder
       #   if: success()
       #   run: Compress-Archive -Path dist -DestinationPath dist.zip

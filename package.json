@@ -9,7 +9,8 @@
     "package-win": "electron-packager . --platform-windows --arch=x64",
     "package-linux": "electron-packager . --platform=linux --arch=x64",
     "package-mac": "electron-packager . --platform=darwin --arch=x64",
-    "dist": "electron-builder -p always"
+    "dist": "electron-builder",
+    "release": "electron-builder -p always"
   },
   "build": {
     "appId": "com.xytrux.passpocket",

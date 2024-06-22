@@ -34,7 +34,8 @@
             "x64",
             "ia32",
             "arm64"
-          ]
+          ],
+          "artifactName": "${productName}-portable-${version}.${ext}"
         }
       ],
       "publish": ["github"]

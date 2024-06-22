@@ -76,3 +76,7 @@ Thanks to Electron and the open-source community for making this project possibl
 ![](https://raw.githubusercontent.com/xytrux/passpocket/main/doc/screenshots/NVIDIA_Share_W59kcZ5uW3.png)
 
 ![](https://raw.githubusercontent.com/xytrux/passpocket/main/doc/screenshots/NVIDIA_Share_fo07cLfs7u.png)
+
+## Security
+
+To report a vulnerability, please follow the steps in [SECURITY.md](doc/SECURITY.md)

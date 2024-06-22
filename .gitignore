@@ -126,11 +126,4 @@ dist
 .yarn/cache
 
 # custom stuffs
-passpocket-win32-x64
-passpocket-linux-x64
-passpocket-darwin-x64
 dist
-.yarn/unplugged
-.yarn/build-state.yml
-.yarn/install-state.gz
-.pnp.*

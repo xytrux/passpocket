@@ -1,4 +1,4 @@
-<p align="center">  <img src="icon.png" alt="PassPocket Logo" width="200">
+<p align="center">  <img src="src/icon/icon.png" alt="PassPocket Logo" width="200">
 </p>
 
 <div align="center" dir="auto">

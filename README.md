@@ -54,7 +54,7 @@ Thanks to Electron and the open-source community for making this project possibl
 
 - [x] Encryption
 - [x] Syncing between devices **(beta)**
-- [ ] argon2 support
+- [ ] Argon2 support
 - [ ] OS integration
 - [ ] Integration with browser extensions
 - [ ] Passkey integration

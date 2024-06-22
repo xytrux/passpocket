@@ -4,8 +4,8 @@ This guide will help you get PassPocket up and running on your local machine for
 
 ## Prerequisites
 
--   Node.js (v14 or higher)
--   npm (comes with Node.js)
+- Node.js (v14 or higher)
+- npm (comes with Node.js)
 
 ## Running from source
 

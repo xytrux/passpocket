@@ -14,7 +14,7 @@ function createWindow() {
         },
     });
 
-    win.loadFile("index.html");
+    win.loadFile("../index.html");
 }
 app.commandLine.appendSwitch("--enable-features", "FluentScrollbar");
 

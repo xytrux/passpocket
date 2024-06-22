@@ -602,7 +602,7 @@ function closePage() {
 function alert(text, icon) {
     Toastify({
         text: text,
-        avatar: "data/" + icon + ".png",
+        avatar: "data/icon/" + icon + ".png",
         duration: 1750,
         close: false,
         gravity: "top", // `top` or `bottom`

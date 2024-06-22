@@ -21,7 +21,8 @@ PassPocket is a simple, yet powerful password manager.
 - Syncing passwords between devices
 
 ## Quick Start
- Download one of the files in the [releases](https://github.com/xytrux/passpocket/releases) page!
+
+Download one of the files in the [releases](https://github.com/xytrux/passpocket/releases) page!
 
 For detailed instructions, see [INSTALL.md](INSTALL.md).
 
@@ -39,6 +40,7 @@ This project is licensed under the MIT License.
 ## Contact
 
 For any inquiries, you can reach out to any of these contacts:
+
 - Email: [`helloworldpy103@gmail.com`](mailto:helloworldpy103@gmail.com)
 - Email: [`claytontdm@gmail.com`](mailto:claytontdm@gmail.com)
 - Matrix/Beeper: `@claytontdm:beeper.com` **(Recommended)**
@@ -49,6 +51,7 @@ For any inquiries, you can reach out to any of these contacts:
 Thanks to Electron and the open-source community for making this project possible.
 
 ## To Do
+
 - [x] Encryption
 - [x] Syncing between devices **(beta)**
 - [ ] Serpent-Twofish-AES support
@@ -61,14 +64,15 @@ Thanks to Electron and the open-source community for making this project possibl
 - [ ] Better UI
 
 ## Screenshots
-![](https://raw.githubusercontent.com/xytrux/passpocket/main/screenshots/NVIDIA_Share_67tMWTY4de.png)
 
-![](https://raw.githubusercontent.com/xytrux/passpocket/main/screenshots/NVIDIA_Share_9XXBRdjv93.png)
+![](https://raw.githubusercontent.com/xytrux/passpocket/main/doc/screenshots/NVIDIA_Share_67tMWTY4de.png)
 
-![](https://raw.githubusercontent.com/xytrux/passpocket/main/screenshots/NVIDIA_Share_JhPvxxah5B-1.png)
+![](https://raw.githubusercontent.com/xytrux/passpocket/main/doc/screenshots/NVIDIA_Share_9XXBRdjv93.png)
 
-![](https://raw.githubusercontent.com/xytrux/passpocket/main/screenshots/NVIDIA_Share_L4VkmdlEm6.png)
+![](https://raw.githubusercontent.com/xytrux/passpocket/main/doc/screenshots/NVIDIA_Share_JhPvxxah5B-1.png)
 
-![](https://raw.githubusercontent.com/xytrux/passpocket/main/screenshots/NVIDIA_Share_W59kcZ5uW3.png)
+![](https://raw.githubusercontent.com/xytrux/passpocket/main/doc/screenshots/NVIDIA_Share_L4VkmdlEm6.png)
 
-![](https://raw.githubusercontent.com/xytrux/passpocket/main/screenshots/NVIDIA_Share_fo07cLfs7u.png)
+![](https://raw.githubusercontent.com/xytrux/passpocket/main/doc/screenshots/NVIDIA_Share_W59kcZ5uW3.png)
+
+![](https://raw.githubusercontent.com/xytrux/passpocket/main/doc/screenshots/NVIDIA_Share_fo07cLfs7u.png)

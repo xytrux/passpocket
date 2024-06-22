@@ -27,7 +27,8 @@
             "arm64"
           ]
         }
-      ]
+      ],
+      "publish": ["github"]
     },
     "linux": {
       "target": [
@@ -55,10 +56,12 @@
             "armv7l"
           ]
         }
-      ]
+      ],
+      "publish": ["github"]
     },
     "mac": {
-      "target": "dmg"
+      "target": "dmg",
+      "publish": ["github"]
     }
   },
   "keywords": [],

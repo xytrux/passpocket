@@ -31,15 +31,15 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run dist --if-present
-      - name: Zip dist folder
-        if: success()
-        run: zip -r dist.zip dist
-      - name: Upload dist artifact
-        if: success()
-        uses: actions/upload-artifact@v3
-        with:
-          name: dist
-          path: dist.zip
+      # - name: Zip dist folder
+      #   if: success()
+      #   run: zip -r dist.zip dist
+      # - name: Upload dist artifact
+      #   if: success()
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: dist
+      #     path: dist-linux.zip
 
   build-macos:
     if: contains(github.event.head_commit.message, '[BUILD]')
@@ -62,15 +62,15 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run dist --if-present
-      - name: Zip dist folder
-        if: success()
-        run: zip -r dist.zip dist
-      - name: Upload dist artifact
-        if: success()
-        uses: actions/upload-artifact@v3
-        with:
-          name: dist
-          path: dist.zip
+      # - name: Zip dist folder
+      #   if: success()
+      #   run: zip -r dist.zip dist
+      # - name: Upload dist artifact
+      #   if: success()
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: dist
+      #     path: dist-macos.zip
 
   build-windows:
     if: contains(github.event.head_commit.message, '[BUILD]')
@@ -93,13 +93,13 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run dist --if-present
-      - name: Zip dist folder
-        if: success()
-        run: Compress-Archive -Path dist -DestinationPath dist.zip
-        shell: pwsh
-      - name: Upload dist artifact
-        if: success()
-        uses: actions/upload-artifact@v3
-        with:
-          name: dist
-          path: dist.zip
+      # - name: Zip dist folder
+      #   if: success()
+      #   run: Compress-Archive -Path dist -DestinationPath dist.zip
+      #   shell: pwsh
+      # - name: Upload dist artifact
+      #   if: success()
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: dist
+      #     path: dist-windows.zip

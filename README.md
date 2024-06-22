@@ -58,6 +58,7 @@ Thanks to Electron and the open-source community for making this project possibl
 - [ ] Authenticator
 - [ ] Mobile friendly website + app
 - [ ] Auto sync
+- [ ] Better UI
 
 ## Screenshots
 ![](https://raw.githubusercontent.com/xytrux/passpocket/main/screenshots/NVIDIA_Share_67tMWTY4de.png)

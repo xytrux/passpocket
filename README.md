@@ -31,7 +31,7 @@ For detailed instructions, see [INSTALL.md](INSTALL.md).
 - [ClaytonTDM](https://github.com/ClaytonTDM) - Initial work
 - [xytrux](https://github.com/xytrux) - Project creator
 - [CallenDV](https://github.com/CallenDV) - Web version
-- [wecannotdecide](https://github.com/wecannotdecide) - MacOS Testing/building
+- [wecannotdecide](https://github.com/wecannotdecide) - Early MacOS Testing/building
 
 ## License
 

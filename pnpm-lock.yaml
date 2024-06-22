@@ -11,6 +11,9 @@ importers:
       '@otplib/preset-browser':
         specifier: ^12.0.1
         version: 12.0.1
+      body-parser:
+        specifier: ^1.20.2
+        version: 1.20.2
       bonjour:
         specifier: ^3.5.0
         version: 3.5.0

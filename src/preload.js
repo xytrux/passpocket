@@ -65,28 +65,35 @@ app.post("/registerData", (req, res) => {
 });
 
 app.get("/getData", async (req, res) => {
-    console.log('someome got the data');
+    console.log('someone got the data');
+    if (!encryptedData) {
+        return res.status(404).send("No data available");
+    }
+
     try {
-        // Decrypt the data
-        const password = await sha256(req.query.password); // Get the password from the query parameters
+        // Ensure the password is hashed the same way as during encryption
+        const password = await sha256(req.query.password);
         const decipher = crypto.createDecipheriv(
             "aes-256-gcm",
             crypto.createHash("sha256").update(password).digest(),
             Buffer.from(encryptedData.iv, "hex")
         );
+
+        // Set the authentication tag
         decipher.setAuthTag(Buffer.from(encryptedData.authTag, "hex"));
+
+        // Decrypt the data
         let decrypted = decipher.update(encryptedData.content, "hex", "utf8");
         decrypted += decipher.final("utf8");
 
-        // send the data
+        // Send the decrypted data
         res.send(JSON.parse(decrypted));
-        // clear original variable
+
+        // Clear the encrypted data and timeout
         encryptedData = null;
-        // clear timeout
         clearTimeout(dataTimeout);
     } catch (error) {
         console.warn(error);
-        // Send a response with status code 418 and a body of "-1" if anything goes wrong
         res.status(418).send("-1");
     }
 });

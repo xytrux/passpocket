@@ -465,7 +465,6 @@ function syncFromDevice(password, host) {
                 continueSync = false;
                 alert("Couldnt reach device", "failure");
                 document.getElementById("startSync").textContent = "Sync";
-                return;
             } else {
                 continueSync = true;
             }
@@ -476,7 +475,8 @@ function syncFromDevice(password, host) {
             alert("Couldnt reach device", "failure");
             document.getElementById("startSync").textContent = "Sync";
         });
-    if (!continueSync) {
+    if (continueSync == true) {
+        console.log('was told to not continue sync, something went wrong')
         return;
     }
     // fetch data

@@ -5,7 +5,7 @@ function createWindow() {
     let win = new BrowserWindow({
         width: 800,
         height: 600,
-        icon: "icon.png",
+        icon: path.join(__dirname, "icon", "icon.png"),
         autoHideMenuBar: true,
         webPreferences: {
             preload: path.join(__dirname, "preload.js"),

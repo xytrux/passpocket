@@ -29,7 +29,8 @@
           ]
         }
       ],
-      "publish": ["github"]
+      "publish": ["github"],
+      "icon": "src/icon/icon.png"
     },
     "linux": {
       "target": [
@@ -58,11 +59,13 @@
           ]
         }
       ],
-      "publish": ["github"]
+      "publish": ["github"],
+      "icon": "src/icon/icon.png"
     },
     "mac": {
       "target": "dmg",
-      "publish": ["github"]
+      "publish": ["github"],
+      "icon": "src/icon/icon.png"
     }
   },
   "keywords": [],

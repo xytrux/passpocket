@@ -29,53 +29,53 @@
             <ul>
                 <li id="setPasswordSidebar">
                     <a href="#" onclick="showPage('masterpassword-set')"
-                        >Set Password</a
+                        >&nbsp;&nbsp;Set Password</a
                     >
                 </li>
                 <li id="loginSidebar" class="hidden">
                     <a href="#" onclick="showPage('masterpassword-login')"
-                        >Login</a
+                        >&nbsp;&nbsp;Login</a
                     >
                 </li>
                 <li class="hidden" id="passwordEntrySidebar">
                     <a href="#" onclick="showPage('password-entry')"
-                        >Password Entry</a
+                        >&nbsp;&nbsp;Add Passwords</a
                     >
                 </li>
                 <li class="hidden" id="passwordGeneratorSidebar">
                     <a href="#" onclick="showPage('password-generator')"
-                        >Password Generator</a
+                        >&nbsp;&nbsp;Password Generator</a
                     >
                 </li>
                 <li class="hidden" id="passwordDisplaySidebar">
                     <a href="#" onclick="showPage('password-display')"
-                        >View Passwords</a
+                        >&nbsp;&nbsp;View Passwords</a
                     >
                 </li>
                 <li class="hidden" id="AuthenticatorSidebar">
                     <a href="#" onclick="showPage('authenticator')"
-                        >Authenticator</a
+                        >󰦯&nbsp;&nbsp;Authenticator</a
                     >
                 </li>
                 <li class="hidden" id="syncSidebar">
-                    <a href="#" onclick="showPage('sync')">Sync</a>
+                    <a href="#" onclick="showPage('sync')">&nbsp;&nbsp;Sync</a>
                 </li>
 
                 <hr class="hidden" id="spacerSidebar" />
 
                 <li id="optionsSidebar">
-                    <a href="#" onclick="showPage('options')">Options</a>
+                    <a href="#" onclick="showPage('options')">&nbsp;&nbsp;Options</a>
                 </li>
                 <li class="hidden" id="logoutSidebar">
-                    <a href="#" onclick="logout()">Logout</a>
+                    <a href="#" onclick="logout()">&nbsp;&nbsp;Logout</a>
                 </li>
-                <li><a href="#" onclick="closePage()">Close</a></li>
+                <li><a href="#" onclick="closePage()">&nbsp;&nbsp;Close</a></li>
             </ul>
         </div>
 
         <div id="content">
             <div id="password-entry" class="page">
-                <h2>Password Entry</h2>
+                <h2>Add Passwords</h2>
                 <input
                     type="text"
                     id="usernameInput"
@@ -96,14 +96,14 @@
 
             <div id="options" class="page">
                 <h2>Options</h2>
-                <label for="theme">Theme</label>
+                <label for="theme">󰸌&nbsp;Theme</label>
                 <select name="theme" id="theme">
-                    <option value="light">Light</option>
-                    <option value="dark">Dark</option>
-                    <option value="dark-catppuccin">Dark (Catppuccin)</option>
+                    <option value="light">&nbsp;Light</option>
+                    <option value="dark">&nbsp;Dark</option>
+                    <option value="dark-catppuccin">&nbsp;Dark (Catppuccin)</option>
                 </select>
                 <br /><br />
-                <label for="encryptionType">Encryption Type</label>
+                <label for="encryptionType">&nbsp;Encryption Type</label>
                 <select name="encryptionType" id="encryptionType">
                     <optgroup label="Web + App">
                         <option value="AES-GCM">AES-GCM</option>
@@ -187,7 +187,10 @@
             <div id="sync" class="page">
                 <h2>Sync</h2>
                 <!-- sync button get get ready for syncing to a device, when you click it it starts a 2m countdown -->
-                <p>Make sure you click "Sync from another PC" on the target device BEFORE pressing "Sync to another PC"</p>
+                <p>
+                    Make sure you click "Sync from another PC" on the target
+                    device BEFORE pressing "Sync to another PC"
+                </p>
                 <button onclick="sync()">Sync to another PC</button>
                 <progress
                     id="syncProgress"
@@ -229,8 +232,20 @@
                     placeholder="Enter sync password"
                     class="hidden"
                 />
-                <button class="hidden" onclick="syncFromDevice(document.querySelector('#syncPasswordInput').value,document.querySelector('#syncDeviceSelect').selectedOptions[0].value);" id="startSync">Sync</button>
-                <button class="hidden" onclick="refreshDropdown()" id="refreshDropdown">Refresh Dropdown (DEBUG)</button>
+                <button
+                    class="hidden"
+                    onclick="syncFromDevice(document.querySelector('#syncPasswordInput').value,document.querySelector('#syncDeviceSelect').selectedOptions[0].value);"
+                    id="startSync"
+                >
+                    Sync
+                </button>
+                <button
+                    class="hidden"
+                    onclick="refreshDropdown()"
+                    id="refreshDropdown"
+                >
+                    Refresh Dropdown (DEBUG)
+                </button>
             </div>
             <script src="data/js/toastify.js"></script>
             <script src="data/js/optlib-buffer.js"></script>

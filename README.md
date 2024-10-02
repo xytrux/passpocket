@@ -1,3 +1,6 @@
+# ARCHIVAL NOTICE
+This project is no longer being maintained. We recommend you switch to [plox](https://github.com/claytontdm/plox), which is made by a contributor.
+
 <p align="center">  <img src="src/icon/icon.png" alt="PassPocket Logo" width="200">
 </p>
 
